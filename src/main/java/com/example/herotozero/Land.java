@@ -6,16 +6,16 @@ import java.util.Date;
 
 @Entity
 public class Land {
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private int ID;
+    //@Id
+    //@GeneratedValue(strategy=GenerationType.AUTO)
+    //private int ID;
     private String name;
-    private float co2Emmission;
+    private double co2Emmission;
     private Date gemeldetAm;
 
     public Land() {}
 
-    public Land(String name, float co2Emmission, Date gemeldetAm) {
+    public Land(String name, double co2Emmission, Date gemeldetAm) {
         super();
         this.name = name;
         this.co2Emmission = co2Emmission;
@@ -30,11 +30,11 @@ public class Land {
         this.name = name;
     }
 
-    public float getCo2Emmission() {
+    public double getCo2Emmission() {
         return co2Emmission;
     }
 
-    public void setCo2Emmission(float co2Emmission) {
+    public void setCo2Emmission(double co2Emmission) {
         this.co2Emmission = co2Emmission;
     }
 

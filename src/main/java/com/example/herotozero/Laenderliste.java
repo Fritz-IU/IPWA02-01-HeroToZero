@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 @Named("Laender")
 @ApplicationScoped
@@ -19,9 +20,9 @@ public class Laenderliste implements Serializable {
 
     public Laenderliste() {
         try {
-            liste.add(new Land("Deutschland", 572319170.00f, dateFormat.parse("23.04.2026")));
-            liste.add(new Land("Österreich", 56367656.00f, dateFormat.parse("23.04.2026")));
-            liste.add(new Land("Schweiz", 31977486.00f, dateFormat.parse("23.04.2026")));
+            liste.add(new Land("Deutschland", 572319170.00, dateFormat.parse("23.04.2026")));
+            liste.add(new Land("Österreich", 56367656.00, dateFormat.parse("23.04.2026")));
+            liste.add(new Land("Schweiz", 31977486.00, dateFormat.parse("23.04.2026")));
         } catch (ParseException e) {
             e.printStackTrace();
         }
