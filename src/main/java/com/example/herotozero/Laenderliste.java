@@ -20,9 +20,9 @@ public class Laenderliste implements Serializable {
 
     public Laenderliste() {
         try {
-            liste.add(new Land("Deutschland", 572319170.00, dateFormat.parse("23.04.2026")));
-            liste.add(new Land("Österreich", 56367656.00, dateFormat.parse("23.04.2026")));
-            liste.add(new Land("Schweiz", 31977486.00, dateFormat.parse("23.04.2026")));
+            liste.add(new Land("DE", "Deutschland", 572319170.00, dateFormat.parse("23.04.2026")));
+            liste.add(new Land("AT", "Österreich", 56367656.00, dateFormat.parse("23.04.2026")));
+            liste.add(new Land("CH", "Schweiz", 31977486.00, dateFormat.parse("23.04.2026")));
         } catch (ParseException e) {
             e.printStackTrace();
         }
