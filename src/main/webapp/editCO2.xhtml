@@ -6,20 +6,21 @@
 
 <h:head><title>Like Hero To Zero</title></h:head>
 <h:body>
-    <h1>CO2-Emissionen</h1>
+    <h1>CO2-Emissionen aktualisieren</h1>
     <h:form>
         <p:dataTable var="land" value="#{Laender.liste}">
             <p:column headerText="Land">
-                <h:outputText value="#{land.name}"/>
+                <p:inputText value="#{land.name}" required="true"/>
             </p:column>
             <p:column headerText="Ländercode">
-                <h:outputText value="#{land.laendercode}"/>
+                <p:inputText value="#{land.laendercode}" maxlength="2" required="true"/>
             </p:column>
             <p:column headerText="Jährliche CO2-Emision">
-                <h:outputText value="#{land.co2Emission}"/>
+                <p:inputNumber value="#{land.co2Emission}" symbol=" t" symbolPosition="s" decimalPlaces="2" required="true">
+                </p:inputNumber>
             </p:column>
             <p:column headerText="Meldedatum">
-                <p:datePicker value="#{land.gemeldetAm}" patter="dd.MM.yyyy" disabled="true">
+                <p:datePicker value="#{land.gemeldetAm}" patter="dd.MM.yyyy" required="true">
                 </p:datePicker>
             </p:column>
         </p:dataTable>
