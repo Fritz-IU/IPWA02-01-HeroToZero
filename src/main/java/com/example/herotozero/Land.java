@@ -6,19 +6,19 @@ import java.util.Date;
 
 @Entity
 public class Land {
-    //@Id
-    //@GeneratedValue(strategy=GenerationType.AUTO)
-    //private int ID;
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private int ID;
     private String name;
-    private double co2Emmission;
+    private double co2Emission;
     private Date gemeldetAm;
 
     public Land() {}
 
-    public Land(String name, double co2Emmission, Date gemeldetAm) {
+    public Land(String name, double co2Emission, Date gemeldetAm) {
         super();
         this.name = name;
-        this.co2Emmission = co2Emmission;
+        this.co2Emission = co2Emission;
         this.gemeldetAm = gemeldetAm;
     }
 
@@ -30,12 +30,12 @@ public class Land {
         this.name = name;
     }
 
-    public double getCo2Emmission() {
-        return co2Emmission;
+    public double getCo2Emission() {
+        return co2Emission;
     }
 
-    public void setCo2Emmission(double co2Emmission) {
-        this.co2Emmission = co2Emmission;
+    public void setCo2Emission(double co2Emmission) {
+        this.co2Emission = co2Emmission;
     }
 
     public Date getGemeldetAm() {

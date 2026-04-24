@@ -3,11 +3,13 @@
 <html>
 <head>
     <title>JSP - Hello World</title>
+    <meta http-equiv="refresh" content="0; URL=http://localhost:8080/HeroToZero_war_exploded/showC02.xhtml">
 </head>
 <body>
-<h1><%= "A better Greeting!" %>
+<h1><%= "Gleich wirst du zu Like Hero To Zero weitergeleitet" %>
 </h1>
 <br/>
-<a href="hello-servlet">Hello Servlet</a>
+<p>Falls du nicht automatisch weitergeleitet wurdest klicker <a href="http://localhost:8080/HeroToZero_war_exploded/showC02.xhtml">hier</a>.</p>
+
 </body>
 </html>
