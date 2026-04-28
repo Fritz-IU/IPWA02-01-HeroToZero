@@ -24,6 +24,10 @@
                 </p:datePicker>
             </p:column>
         </p:dataTable>
+        <p:commandButton value="Änderungen speichern" icon="pi pi-save" action="#{controller.saveEdit()}"/>
+        <p:messages id="messages">
+            <p:autoUpdate/>
+        </p:messages>
     </h:form>
 
 </h:body>
