@@ -2,6 +2,7 @@ package com.example.herotozero;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -27,6 +28,11 @@ public class Land {
         this.laendercode = laendercode;
         this.co2Emission = co2Emission;
         this.gemeldetAm = gemeldetAm;
+    }
+
+    public String speichern() {
+        LaenderListeController.getInstance().saveLand(this);
+        return null;
     }
 
     public String getName() {

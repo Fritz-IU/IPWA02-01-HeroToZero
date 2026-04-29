@@ -8,7 +8,7 @@
 <h:body>
     <h1>Land hinzufügen</h1>
     <h:form>
-    <p:dataTable var="land" value="#{Laender.liste}">
+    <p:dataTable var="land" value="#{controller.neuesLand}">
         <p:column headerText="Land">
             <p:inputText value="#{land.name}" required="true"/>
         </p:column>
@@ -20,10 +20,15 @@
             </p:inputNumber>
         </p:column>
         <p:column headerText="Meldedatum">
-            <p:datePicker value="#{land.gemeldetAm}" patter="dd.MM.yyyy" required="true" disabled="true">
+            <p:datePicker value="#{land.gemeldetAm}" locale="de" patter="dd.MM.yyyy" required="true">
             </p:datePicker>
         </p:column>
     </p:dataTable>
+        <h:panelGrid columns="2">
+            <p:commandButton value="Land hinzufügen" icon="pi pi-save" action="#{controller.handleSave()}"/>
+            <p:commandButton value="Abbrechen" icon="pi pi-trash" action="#{controller.abbruch()}"/>
+        </h:panelGrid>
+
     </h:form>
 
 
