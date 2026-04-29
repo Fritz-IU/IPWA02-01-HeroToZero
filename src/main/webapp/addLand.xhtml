@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head><title>Like Hero To Zero</title></h:head>
+<h:body>
+    <h1>Land hinzufügen</h1>
+    <h:form>
+    <p:dataTable var="land" value="#{Laender.liste}">
+        <p:column headerText="Land">
+            <p:inputText value="#{land.name}" required="true"/>
+        </p:column>
+        <p:column headerText="Ländercode">
+            <p:inputText value="#{land.laendercode}" maxlength="2" required="true"/>
+        </p:column>
+        <p:column headerText="Jährliche CO2-Emision">
+            <p:inputNumber value="#{land.co2Emission}" symbol=" t" symbolPosition="s" decimalPlaces="2" required="true">
+            </p:inputNumber>
+        </p:column>
+        <p:column headerText="Meldedatum">
+            <p:datePicker value="#{land.gemeldetAm}" patter="dd.MM.yyyy" required="true" disabled="true">
+            </p:datePicker>
+        </p:column>
+    </p:dataTable>
+    </h:form>
+
+
+</h:body>
+</html>

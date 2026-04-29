@@ -24,7 +24,11 @@
                 </p:datePicker>
             </p:column>
         </p:dataTable>
-        <p:commandButton value="Änderungen speichern" icon="pi pi-save" action="#{controller.saveEdit()}"/>
+        <p:row>
+            <p:commandButton value="Änderungen speichern" icon="pi pi-save" action="#{controller.saveEdit()}"/>
+            <p:commandButton value="Land hinzufügen" icon="pi pi-plus-circle" action=""/>
+        </p:row>
+
         <p:messages id="messages">
             <p:autoUpdate/>
         </p:messages>

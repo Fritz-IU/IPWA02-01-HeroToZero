@@ -29,4 +29,17 @@ public class LaenderListeController implements Serializable {
         et.commit();
         return "editCO2";
     }
+
+    private Land neuesLand = null;
+
+    public String addLand() {
+        return "addLand";
+    }
+
+    public Land getNeuesLand() {
+        if(null == neuesLand) {
+            this.neuesLand = new Land();
+        }
+        return this.neuesLand;
+    }
 }
