@@ -16,6 +16,11 @@ public class Land {
 
     public Land() {}
 
+    public Land(Date gemeldetAm) {
+        super();
+        this.gemeldetAm = gemeldetAm;
+    }
+
     public Land(String laendercode, String name, double co2Emission, Date gemeldetAm) {
         super();
         this.name = name;
