@@ -12,7 +12,7 @@ import java.util.Date;
 public class Land {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int ID;
+    private Integer ID;
     @Column(name = "laendercode", nullable = false, unique = true)
     private String laendercode;
     private String name;
@@ -39,11 +39,11 @@ public class Land {
         return null;
     }
 
-    public int getID(){
+    public Integer getID(){
         return this.ID;
     }
 
-    public void setID(int ID) {
+    public void setID(Integer ID) {
         this.ID = ID;
     }
 
