@@ -1,5 +1,7 @@
 package com.example.herotozero;
 
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -11,7 +13,7 @@ import java.util.Date;
 })
 public class Land {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer ID;
     @Column(name = "laendercode", nullable = false, unique = true)
     private String laendercode;
@@ -35,7 +37,13 @@ public class Land {
     }
 
     public String speichern() {
-        LaenderListeController.getInstance().saveLand(this);
+        try {
+            LaenderListeController.getInstance().saveLand(this);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erfolg", "Land erfolgreich hinzugefügt."));
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fehler", e.getMessage()));
+        }
+
         return null;
     }
 

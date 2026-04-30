@@ -33,12 +33,18 @@ public class LaenderListeController implements Serializable {
         return instance;
     }
 
+    public List<Land> getLaender() {
+        EntityManager em = emf.createEntityManager();
+        Query q = em.createQuery("SELECT l FROM Land l");
+        List<Land> laender = q.getResultList();
+        return laender;
+    }
+
     public String startEdit() {
         return "editCO2";
     }
 
     public String saveEdit() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("heroToZeroPersistenceUnit");
         EntityManager em = emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
         et.begin();
@@ -71,13 +77,30 @@ public class LaenderListeController implements Serializable {
         return "editCO2";
     }
 
-    public String saveLand(Land neuesLand) {
+    public String saveLand(Land neuesLand) throws Exception {
         EntityManager em = emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
-        et.begin();
-        em.merge(neuesLand);
-        et.commit();
-        em.close();
-        return null;
+        try {
+            List<Land> existiert = em.createQuery("SELECT l FROM Land l WHERE l.laendercode = :n", Land.class).setParameter("n", neuesLand.getLaendercode()).getResultList();
+            if (!existiert.isEmpty()) {
+                if (neuesLand.getID() == null) {
+                    throw new Exception("Das Land existiert bereits ind der Datenbank!");
+                }
+                if (!existiert.get(0).getID().equals(neuesLand.getID())) {
+                    throw new Exception("Das Land mit dem Ländercode wurde bereits angegeben.");
+                }
+
+            }
+            et.begin();
+            if (neuesLand.getID() == null) {
+                em.persist(neuesLand);
+            } else {
+                em.merge(neuesLand);
+            }
+            et.commit();
+        } finally {
+            em.close();
+            return null;
+        }
     }
 }
