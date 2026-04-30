@@ -35,6 +35,14 @@ public class Land {
         return null;
     }
 
+    public int getID(){
+        return this.ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
     public String getName() {
         return this.name;
     }
