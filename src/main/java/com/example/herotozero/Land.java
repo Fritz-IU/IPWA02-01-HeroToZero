@@ -6,10 +6,14 @@ import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
+@Table(name = "land", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "laendercode")
+})
 public class Land {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int ID;
+    @Column(name = "laendercode", nullable = false, unique = true)
     private String laendercode;
     private String name;
     private double co2Emission;
