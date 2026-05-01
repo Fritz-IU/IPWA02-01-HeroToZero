@@ -36,17 +36,6 @@ public class Land {
         this.gemeldetAm = gemeldetAm;
     }
 
-    public String speichern() {
-        try {
-            LaenderListeController.getInstance().saveLand(this);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erfolg", "Land erfolgreich hinzugefügt."));
-        } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fehler", e.getMessage()));
-        }
-
-        return null;
-    }
-
     public Integer getID(){
         return this.ID;
     }

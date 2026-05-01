@@ -8,7 +8,7 @@
 <h:body>
     <h1>CO2-Emissionen aktualisieren</h1>
     <h:form>
-        <p:dataTable var="land" value="#{Laender.liste}">
+        <p:dataTable var="land" value="#{Laender.laenderListe}">
             <p:column headerText="Land">
                 <p:inputText value="#{land.name}" required="true"/>
             </p:column>

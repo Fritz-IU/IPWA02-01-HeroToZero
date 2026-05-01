@@ -7,9 +7,6 @@ import jakarta.inject.Named;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Named("controller")
@@ -37,6 +34,7 @@ public class LaenderListeController implements Serializable {
         EntityManager em = emf.createEntityManager();
         Query q = em.createQuery("SELECT l FROM Land l");
         List<Land> laender = q.getResultList();
+        em.close();
         return laender;
     }
 
@@ -48,36 +46,17 @@ public class LaenderListeController implements Serializable {
         EntityManager em = emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
         et.begin();
-        for (Land a : laenderliste.getListe())
+        for (Land a : laenderliste.getLaenderListe())
             em.merge(a);
         et.commit();
         return "editCO2";
     }
 
-    private Land neuesLand = null;
-
     public String addLand() {
         return "addLand";
     }
 
-    public Land getNeuesLand() {
-        if(null == neuesLand) {
-            this.neuesLand = new Land();
-            neuesLand.setGemeldetAm(new Date());
-        }
-        return this.neuesLand;
-    }
-
-    public void handleSave() {
-        this.neuesLand.speichern();
-    }
-
-    public String abbruch() {
-        //muss die required Attribute der Eingabefelder umgehen können
-        return "editCO2";
-    }
-
-    public String saveLand(Land neuesLand) throws Exception {
+    public void saveLand(Land neuesLand) throws Exception {
         EntityManager em = emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
         try {
@@ -100,7 +79,6 @@ public class LaenderListeController implements Serializable {
             et.commit();
         } finally {
             em.close();
-            return null;
         }
     }
 }

@@ -8,7 +8,7 @@
 <h:body>
     <h1>Land hinzufügen</h1>
     <h:form id="landHinzufuegen">
-    <p:dataTable var="land" value="#{controller.neuesLand}">
+    <p:dataTable var="land" value="#{Laender.neuesLand}">
         <p:column headerText="Land">
             <p:inputText value="#{land.name}" required="true"/>
         </p:column>
@@ -25,8 +25,8 @@
         </p:column>
     </p:dataTable>
         <h:panelGrid columns="2">
-            <p:commandButton value="Land hinzufügen" icon="pi pi-save" action="#{controller.handleSave()}" update="landHinzufuegen"/>
-            <p:commandButton value="Abbrechen" icon="pi pi-trash" action="#{controller.abbruch()}"/>
+            <p:commandButton value="Land hinzufügen" icon="pi pi-save" action="#{Laender.handleSave()}" update="landHinzufuegen"/>
+            <p:commandButton value="Abbrechen" icon="pi pi-trash" action="#{Laender.abbruch()}"/>
         </h:panelGrid>
         <p:growl id="growl" showDetail="true" life="3000" />
         <p:messages id="messages" showDetail="true" closable="true" />
