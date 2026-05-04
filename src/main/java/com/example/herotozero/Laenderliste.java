@@ -38,7 +38,7 @@ public class Laenderliste implements Serializable {
         return this.neuesLand;
     }
 
-    public String handleSave() {
+    public void handleSave() {
         try {
             //Neues Land-Objekt an den Controller zum Speichern senden
             LaenderListeController.getInstance().saveLand(this.neuesLand);
@@ -50,12 +50,10 @@ public class Laenderliste implements Serializable {
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fehler", e.getMessage()));
         }
-        return "editCO2";
     }
 
     public String abbruch() {
         this.neuesLand = null;
-        //muss die required Attribute der Eingabefelder umgehen können
         return "editCO2";
     }
 }
