@@ -13,7 +13,9 @@
                 <p:inputText value="#{land.name}" required="true"/>
             </p:column>
             <p:column headerText="Ländercode">
-                <p:inputText value="#{land.laendercode}" maxlength="2" required="true"/>
+                <p:inputText value="#{land.laendercode}" maxlength="2" required="true" oninput="this.value = this.value.replace(/\s|[^A-Z]/gi, '').toUpperCase()" validatorMessage="Der Ländercode muss zwei Buchstaben lang sein!">
+                    <f:validateLength minimum="2"/>
+                </p:inputText>
             </p:column>
             <p:column headerText="Jährliche CO2-Emision">
                 <p:inputNumber value="#{land.co2Emission}" symbol=" t" symbolPosition="s" decimalPlaces="2" required="true">
