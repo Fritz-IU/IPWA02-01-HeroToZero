@@ -8,26 +8,26 @@
 <h:body>
     <h1>Land hinzufügen</h1>
     <h:form id="landHinzufuegen">
-    <p:dataTable var="land" value="#{Laender.neuesLand}">
-        <p:column headerText="Land">
-            <p:inputText id="name" value="#{land.name}" required="true"/>
-            <p:tooltip id="ttname" for="name" showEvent="focus" hideEvent="blur" position="top" value="Bitte gebe den Namen des Landes an."/>
-        </p:column>
-        <p:column headerText="Ländercode">
-            <p:inputText id="laendercode" value="#{land.laendercode}" maxlength="2" required="true" oninput="this.value = this.value.replace(/\s|[^A-Z]/gi, '').toUpperCase()" requiredMessage="Bitte gibt einen Ländercode an!" validatorMessage="Der Ländercode muss zwei Buchstaben lang sein!">
-                <f:validateLength minimum="2"/>
-            </p:inputText>
-            <p:tooltip id="ttlaendercode" for="laendercode" showEvent="focus" hideEvent="blur" position="top" value="Bitte gebe den zweistelligen Ländercode nach ISO 3166-1."/>
-        </p:column>
-        <p:column headerText="Jährliche CO2-Emision">
-            <p:inputNumber id="co2Emision" value="#{land.co2Emission}" symbol=" t" symbolPosition="s" decimalPlaces="2" required="true" title="Bitte gebe die CO2-Emmisionen an."/>
-            <p:tooltip id="ttco2Emision" for="co2Emision" showEvent="focus" hideEvent="blur" position="top" value="Bitte gebe die CO2-Emmisionen an."/>
-        </p:column>
-        <p:column headerText="Meldedatum">
-            <p:datePicker id="datum" value="#{land.gemeldetAm}" locale="de" patter="dd.MM.yyyy" required="true" title="Bitte gebe das Datum deiner Meldung an."/>
-            <p:tooltip id="ttdatum" for="datum" showEvent="focus" hideEvent="blur" position="top"/>
-        </p:column>
-    </p:dataTable>
+        <p:dataTable var="land" value="#{Laender.neuesLand}">
+            <p:column headerText="Land">
+                <p:inputText id="name" value="#{land.name}" required="true"/>
+                <p:tooltip id="ttname" for="name" showEvent="focus" hideEvent="blur" position="top" value="Bitte gebe den Namen des Landes an."/>
+            </p:column>
+            <p:column headerText="Ländercode">
+                <p:inputText id="laendercode" value="#{land.laendercode}" maxlength="2" required="true" oninput="this.value = this.value.replace(/\s|[^A-Z]/gi, '').toUpperCase()" requiredMessage="Bitte gibt einen Ländercode an!" validatorMessage="Der Ländercode muss zwei Buchstaben lang sein!">
+                    <f:validateLength minimum="2"/>
+                </p:inputText>
+                <p:tooltip id="ttlaendercode" for="laendercode" showEvent="focus" hideEvent="blur" position="top" value="Bitte gebe den zweistelligen Ländercode nach ISO 3166-1 an."/>
+            </p:column>
+            <p:column headerText="Jährliche CO2-Emision">
+                <p:inputNumber id="co2Emision" value="#{land.co2Emission}" symbol=" t" symbolPosition="s" decimalPlaces="2" required="true" title="Bitte gebe die CO2-Emmisionen an."/>
+                <p:tooltip id="ttco2Emision" for="co2Emision" showEvent="focus" hideEvent="blur" position="top" value="Bitte gebe die CO2-Emmisionen an."/>
+            </p:column>
+            <p:column headerText="Meldedatum">
+                <p:datePicker id="datum" value="#{land.gemeldetAm}" locale="de" patter="dd.MM.yyyy" required="true" title="Bitte gebe das Datum deiner Meldung an."/>
+                <p:tooltip id="ttdatum" for="datum" showEvent="focus" hideEvent="blur" position="top"/>
+            </p:column>
+        </p:dataTable>
         <h:panelGrid columns="2">
             <p:commandButton value="Zurück" icon="pi pi-arrow-left" immediate="true" action="#{Laender.abbruch()}"/>
             <p:commandButton value="Land hinzufügen" icon="pi pi-save" update="landHinzufuegen" action="#{Laender.handleSave()}" />
@@ -35,6 +35,24 @@
         <p:growl id="growl" showDetail="true" life="3000" />
         <p:messages id="messages" showDetail="true" closable="true" />
         <p:tooltip globalSelector="input, .ui-inputfield, .ui-datepicker-input" showEvent="focus click" hideEvent="blur" position="top"/>
+    </h:form>
+
+    <h:form>
+        <p:panelGrid columns="2" >
+            <h:outputLabel for="pname" value="Land:"/>
+            <p:inputText id="pname" value="#{land.name}" required="true" title="Bitte gebe den Namen des Landes an."/>
+
+            <h:outputLabel for="plaendercode" value="Ländercode:"/>
+            <p:inputText id="plaendercode" value="#{land.laendercode}" required="true" maxlength="2" oninput="this.value = this.value.replace(/\s|[^A-Z]/gi, '').toUpperCase()"
+                         requiredMessage="Bitte gibt einen Ländercode an!" validatorMessage="Der Ländercode muss zwei Buchstaben lang sein!" title="Bitte gebe den zweistelligen Ländercode nach ISO 3166-1 an."/>
+
+            <h:outputLabel for="pCO2Emission" value="CO2-Emission:"/>
+            <p:inputNumber id="pCO2Emission" value="#{land.co2Emission}" required="true" symbol=" t" symbolPosition="s" decimalPlaces="2" title="Bitte gebe die CO2-Emmisionen an."/>
+
+            <h:outputLabel for="pdate" value="Meldedatum:"/>
+            <p:datePicker id="pdate" value="#{land.gemeldetAm}" locale="de" patter="dd.MM.yyyy" required="true" title="Bitte gebe das Datum deiner Meldung an."/>
+
+        </p:panelGrid>
 
     </h:form>
 
