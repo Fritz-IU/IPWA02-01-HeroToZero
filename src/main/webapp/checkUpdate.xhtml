@@ -6,7 +6,7 @@
 
 <h:head><title>Like Hero To Zero</title></h:head>
 <h:body>
-    <h1>CO2-Emissionen</h1>
+    <h1>Aktualisierungen und neue Länder prüfen</h1>
     <h:form>
         <p:dataTable var="land" value="#{Laender.laenderListe}">
             <p:column headerText="Land">
@@ -23,9 +23,11 @@
                 </p:datePicker>
             </p:column>
         </p:dataTable>
+        <p:commandButton value="Liste anzeigen" icon="pi pi-pencil" action="#{controller.showCO2()}"/>
         <p:commandButton value="Liste bearbeiten" icon="pi pi-pencil" action="#{controller.startEdit()}"/>
-        <p:commandButton value="Aktualisierungen prüfen" icon="pi pi-pencil" action="#{controller.checkUpdate()}"/>
     </h:form>
+
+
 
 </h:body>
 </html>

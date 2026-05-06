@@ -37,9 +37,29 @@ public class LaenderListeController implements Serializable {
         em.close();
         return laender;
     }
+    /*
+    public List<Land> getUpdate() {
+        EntityManager em = emf.createEntityManager();
+        Query q = em.createQuery("SELECT u FROM Update u");
+        List<Land> update = q.getResultList();
+        em.close();
+        return update;
+    }*/
 
     public String startEdit() {
         return "editCO2";
+    }
+
+    public String checkUpdate() {
+        return "checkUpdate";
+    }
+
+    public String showCO2() {
+        return "showCO2";
+    }
+
+    public String addLand() {
+        return "addLand";
     }
 
     public String saveEdit() {
@@ -52,9 +72,7 @@ public class LaenderListeController implements Serializable {
         return "editCO2";
     }
 
-    public String addLand() {
-        return "addLand";
-    }
+
 
     public void saveLand(Land neuesLand) throws Exception {
         EntityManager em = emf.createEntityManager();

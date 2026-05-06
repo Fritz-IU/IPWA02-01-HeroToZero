@@ -17,7 +17,7 @@ public class Laenderliste implements Serializable {
     private List<Land> laenderListe = new ArrayList<Land>();
     private Land neuesLand = null;
 
-    //Lädt initial beim Start die Liste der Länder von Server
+    //Lädt initial beim Start die Liste der Länder aus der Datenbank
     public Laenderliste() {
         this.laenderListe = LaenderListeController.getInstance().getLaender();
     }
