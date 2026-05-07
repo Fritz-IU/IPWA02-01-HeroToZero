@@ -13,7 +13,8 @@ public class LandUpdate {
     private String name;
     private double co2Emission;
     private Date gemeldetAm;
-    private String updateStatus;
+    @Enumerated(EnumType.STRING)
+    private UpdateStatus updateStatus = UpdateStatus.OFFEN;
     private boolean vorhandenLand;
     private Integer idLand;
     private Date logDate;
@@ -26,18 +27,14 @@ public class LandUpdate {
         this.name = name;
         this.co2Emission = co2Emission;
         this.gemeldetAm = gemeldetAm;
+        this.vorhandenLand = false;
         this.logDate = new Date();
     }
 
     public LandUpdate(String laendercode, String name, double co2Emission, Date gemeldetAm, Integer idLand) {
-        super();
-        this.laendercode = laendercode;
-        this.name = name;
-        this.co2Emission = co2Emission;
-        this.gemeldetAm = gemeldetAm;
+        this(laendercode, name, co2Emission, gemeldetAm);
         this.idLand = idLand;
         this.vorhandenLand = true;
-        this.logDate = new Date();
     }
 
     public Integer getID() {
@@ -80,11 +77,11 @@ public class LandUpdate {
         this.gemeldetAm = gemeldetAm;
     }
 
-    public String getUpdateStatus() {
+    public UpdateStatus getUpdateStatus() {
         return updateStatus;
     }
 
-    public void setUpdateStatus(String updateStatus) {
+    public void setUpdateStatus(UpdateStatus updateStatus) {
         this.updateStatus = updateStatus;
     }
 
