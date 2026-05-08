@@ -13,7 +13,7 @@ import java.util.Date;
 @Named("Update")
 @ApplicationScoped
 public class LaenderUpdate implements Serializable {
-    /*
+
     private static LaenderUpdate instance = new LaenderUpdate();
     private List<Land> laenderUpdate = new ArrayList<Land>();
 
@@ -27,5 +27,5 @@ public class LaenderUpdate implements Serializable {
 
     public List<Land> getLaenderUpdate() {
         return laenderUpdate;
-    }*/
+    }
 }

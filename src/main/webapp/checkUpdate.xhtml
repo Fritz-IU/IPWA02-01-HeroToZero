@@ -8,18 +8,18 @@
 <h:body>
     <h1>Aktualisierungen und neue Länder prüfen</h1>
     <h:form>
-        <p:dataTable var="land" value="#{Laender.laenderListe}">
+        <p:dataTable var="landUpdate" value="#{Update.laenderUpdate}">
             <p:column headerText="Land">
-                <h:outputText value="#{land.name}"/>
+                <h:outputText value="#{landUpdate.name}"/>
             </p:column>
             <p:column headerText="Ländercode">
-                <h:outputText value="#{land.laendercode}"/>
+                <h:outputText value="#{landUpdate.laendercode}"/>
             </p:column>
             <p:column headerText="Jährliche CO2-Emision">
-                <h:outputText value="#{land.co2Emission}"/>
+                <h:outputText value="#{landUpdate.co2Emission}"/>
             </p:column>
             <p:column headerText="Meldedatum">
-                <p:datePicker value="#{land.gemeldetAm}" patter="dd.MM.yyyy" disabled="true">
+                <p:datePicker value="#{landUpdate.gemeldetAm}" patter="dd.MM.yyyy" disabled="true">
                 </p:datePicker>
             </p:column>
         </p:dataTable>

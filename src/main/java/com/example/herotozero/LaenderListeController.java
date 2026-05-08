@@ -40,7 +40,7 @@ public class LaenderListeController implements Serializable {
 
     public List<Land> getUpdate() {
         EntityManager em = emf.createEntityManager();
-        Query q = em.createQuery("SELECT u FROM Update u");
+        Query q = em.createQuery("SELECT u FROM LandUpdate u");
         List<Land> update = q.getResultList();
         em.close();
         return update;
