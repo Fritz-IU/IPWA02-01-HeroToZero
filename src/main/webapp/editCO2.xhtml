@@ -25,13 +25,16 @@
                 <p:datePicker value="#{land.gemeldetAm}" patter="dd.MM.yyyy" required="true">
                 </p:datePicker>
             </p:column>
+            <p:column headerText="Änderungen Speichern">
+                <p:commandButton value="Anderung speichern" icon="pi pi-save" action="#{Laender.updateSingleLand(land)}" update="@this :messages" process="@this @parent:@parent"/>
+            </p:column>
         </p:dataTable>
         <h:panelGrid columns="2">
             <p:commandButton value="Änderungen speichern" icon="pi pi-save" action="#{controller.saveEdit()}"/>
             <p:commandButton id="neuesLand" value="Land hinzufügen" icon="pi pi-plus-circle" action="#{controller.addLand()}"/>
         </h:panelGrid>
 
-        <p:messages id="messages">
+        <p:messages id="messages" showDetail="true" closable="true">
             <p:autoUpdate/>
         </p:messages>
     </h:form>
