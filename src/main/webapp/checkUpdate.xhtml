@@ -24,6 +24,18 @@
                 <p:datePicker value="#{landUpdate.gemeldetAm}" patter="dd.MM.yyyy" disabled="true">
                 </p:datePicker>
             </p:column>
+            <p:column headerText="Neues Land oder aktualisierung?">
+                <p:selectBooleanButton value="#{!landUpdate.vorhandenLand}" onLabel="Neues Land" offLabel="Land aktualisiert" style="width: 200px" disabled="true"/>
+            </p:column>
+            <p:column headerText="Status der Überprüfung">
+                <h:outputText value="#{landUpdate.updateStatus}"/>
+            </p:column>
+            <p:column headerText="Aktion">
+                <p:panelGrid columns="2">
+                    <p:commandButton value="Akzeptieren" icon="pi pi-thumbs-up"  />
+                    <p:commandButton value="Ablehnen" icon="pi pi-thumbs-down"  />
+                </p:panelGrid>
+            </p:column>
         </p:dataTable>
         <p:commandButton value="Liste anzeigen" icon="pi pi-pencil" action="#{controller.showCO2()}"/>
         <p:commandButton value="Liste bearbeiten" icon="pi pi-pencil" action="#{controller.startEdit()}"/>
