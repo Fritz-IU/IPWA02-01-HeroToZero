@@ -10,10 +10,10 @@
     <h:form>
         <p:dataTable var="land" value="#{Laender.laenderListe}">
             <p:column headerText="Land">
-                <p:inputText value="#{land.name}" required="true"/>
+                <p:inputText value="#{land.name}" required="true" disabled="true"/>
             </p:column>
             <p:column headerText="Ländercode">
-                <p:inputText value="#{land.laendercode}" maxlength="2" required="true" oninput="this.value = this.value.replace(/\s|[^A-Z]/gi, '').toUpperCase()" validatorMessage="Der Ländercode muss zwei Buchstaben lang sein!">
+                <p:inputText value="#{land.laendercode}" maxlength="2" required="true" disabled="true" oninput="this.value = this.value.replace(/\s|[^A-Z]/gi, '').toUpperCase()" validatorMessage="Der Ländercode muss zwei Buchstaben lang sein!">
                     <f:validateLength minimum="2"/>
                 </p:inputText>
             </p:column>

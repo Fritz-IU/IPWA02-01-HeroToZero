@@ -16,7 +16,9 @@
                 <h:outputText value="#{land.laendercode}"/>
             </p:column>
             <p:column headerText="Jährliche CO2-Emision">
-                <h:outputText value="#{land.co2Emission}"/>
+                <h:outputText value="#{land.co2Emission}" >
+                    <f:convertNumber type="number" pattern="#,##0.00' t'" locale="de_DE" />
+                </h:outputText>
             </p:column>
             <p:column headerText="Meldedatum">
                 <p:datePicker value="#{land.gemeldetAm}" patter="dd.MM.yyyy" disabled="true">
