@@ -133,10 +133,26 @@ public class LaenderListeController implements Serializable {
         LandUpdate verwalteUpdate = em.find(LandUpdate.class, update.getID());
         verwalteUpdate.setUpdateStatus(UpdateStatus.AKZEPTIERT);
         em.merge(verwalteUpdate);
+        em.close();
     }
 
-    public void rejectUpdate(LandUpdate land) {
+    public void rejectUpdate(LandUpdate update) {
         EntityManager em = emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
+        et.begin();
+        LandUpdate verwalteUpdate = em.find(LandUpdate.class, update.getID());
+        verwalteUpdate.setUpdateStatus(UpdateStatus.ABGELEHNT);
+        em.merge(verwalteUpdate);
+        et.commit();
+        em.close();
+    }
+
+    public List<LandUpdate> getUpdatesOffen() {
+        EntityManager em = emf.createEntityManager();
+        try {
+            return em.createQuery("SELECT u FROM LandUpdate u WHERE u.updateStatus = :s ORDER BY u.logDate ASC", LandUpdate.class).setParameter("s", UpdateStatus.OFFEN).getResultList();
+        } finally {
+            em.close();
+        }
     }
 }

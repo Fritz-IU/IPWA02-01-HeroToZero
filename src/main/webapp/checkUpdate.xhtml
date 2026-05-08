@@ -8,7 +8,7 @@
 <h:body>
     <h1>Aktualisierungen und neue Länder prüfen</h1>
     <h:form>
-        <p:dataTable var="landUpdate" value="#{Update.laenderUpdate}">
+        <p:dataTable id="updateTable" var="landUpdate" value="#{Update.laenderUpdate}">
             <p:column headerText="Land">
                 <h:outputText value="#{landUpdate.name}"/>
             </p:column>
@@ -32,13 +32,14 @@
             </p:column>
             <p:column headerText="Aktion">
                 <p:panelGrid columns="2">
-                    <p:commandButton value="Akzeptieren" icon="pi pi-thumbs-up" action="#{controller.acceptUpdate(landUpdate)}" update="@this :messages" process="@this @parent:@parent" />
-                    <p:commandButton value="Ablehnen" icon="pi pi-thumbs-down"  />
+                    <p:commandButton value="Akzeptieren" icon="pi pi-thumbs-up" action="#{Update.accept(landUpdate)}" update="updateTable" styleClass="ui-button-success"/>
+                    <p:commandButton value="Ablehnen" icon="pi pi-thumbs-down" action="#{controller.rejectUpdate(landUpdate)}" update="updateTable" styleClass="ui-badge-danger" />
                 </p:panelGrid>
             </p:column>
         </p:dataTable>
         <p:commandButton value="Liste anzeigen" icon="pi pi-pencil" action="#{controller.showCO2()}"/>
         <p:commandButton value="Liste bearbeiten" icon="pi pi-pencil" action="#{controller.startEdit()}"/>
+        <p:growl id="msgs" showDetail="true" />
     </h:form>
 
 
