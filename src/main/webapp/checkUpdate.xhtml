@@ -32,7 +32,7 @@
             </p:column>
             <p:column headerText="Aktion">
                 <p:panelGrid columns="2">
-                    <p:commandButton value="Akzeptieren" icon="pi pi-thumbs-up"  />
+                    <p:commandButton value="Akzeptieren" icon="pi pi-thumbs-up" action="#{controller.acceptUpdate(landUpdate)}" update="@this :messages" process="@this @parent:@parent" />
                     <p:commandButton value="Ablehnen" icon="pi pi-thumbs-down"  />
                 </p:panelGrid>
             </p:column>

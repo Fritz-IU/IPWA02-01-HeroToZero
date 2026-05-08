@@ -109,4 +109,34 @@ public class LaenderListeController implements Serializable {
             em.close();
         }
     }
+
+    public void acceptUpdate(LandUpdate update) {
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+        et.begin();
+
+        if(update.isVorhandenLand()) {
+            Land vorhanden = em.find(Land.class, update.getIdLand());
+            vorhanden.setName(update.getName());
+            vorhanden.setLaendercode(update.getLaendercode());
+            vorhanden.setCo2Emission(update.getCo2Emission());
+            vorhanden.setGemeldetAm(update.getGemeldetAm());
+            em.merge(vorhanden);
+        } else {
+            Land neu = new Land();
+            neu.setName(update.getName());
+            neu.setLaendercode(update.getLaendercode());
+            neu.setCo2Emission(update.getCo2Emission());
+            neu.setGemeldetAm(update.getGemeldetAm());
+            em.persist(neu);
+        }
+        LandUpdate verwalteUpdate = em.find(LandUpdate.class, update.getID());
+        verwalteUpdate.setUpdateStatus(UpdateStatus.AKZEPTIERT);
+        em.merge(verwalteUpdate);
+    }
+
+    public void rejectUpdate(LandUpdate land) {
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+    }
 }
