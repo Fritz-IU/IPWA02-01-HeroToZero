@@ -8,11 +8,23 @@
 <h:body>
     <h1>CO2-Emissionen</h1>
     <h:form>
-        <p:dataTable var="land" value="#{Laender.laenderListe}">
-            <p:column headerText="Land">
+        <p:dataTable id="laenderTabelle" var="land" value="#{Laender.laenderListe}"
+                     widgetVar="laenderTabelle"
+                     emptyMessage="Kein Land mit diesen Namen gefunden."
+                     filteredValue="#{Laender.gefilterteLaender}"
+                     globalFilterOnly="true">
+            <f:facet name="header">
+                <div class="flex justify-contend-end">
+                    <p:inputText id="globalFilter"
+                                 onkeyup="PF('laenderTabelle').filter()"
+                                 style="width: 300px"
+                                 placeholder="Land suchen" />
+                </div>
+            </f:facet>
+            <p:column headerText="Land" sortBy="#{land.name}" filterBy="#{land.name}" filterMatchMode="contains">
                 <h:outputText value="#{land.name}"/>
             </p:column>
-            <p:column headerText="Ländercode">
+            <p:column headerText="Ländercode" filterBy="#{land.name}" filterMatchMode="contains">
                 <h:outputText value="#{land.laendercode}"/>
             </p:column>
             <p:column headerText="Jährliche CO2-Emision">

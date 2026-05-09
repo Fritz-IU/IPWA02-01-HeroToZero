@@ -18,6 +18,7 @@ import java.util.Date;
 public class Laenderliste implements Serializable {
 
     private List<Land> laenderListe = new ArrayList<Land>();
+    private List<Land> gefilterteLaender;
     private Land neuesLand = null;
 
     public Laenderliste() {
@@ -30,18 +31,7 @@ public class Laenderliste implements Serializable {
 
     public void listeAktualisieren() {
         this.laenderListe = LaenderListeController.getInstance().getLaender();
-    }
-
-    public List<Land> getLaenderListe() {
-        return laenderListe;
-    }
-
-    public Land getNeuesLand() {
-        if(null == neuesLand) {
-            this.neuesLand = new Land();
-            neuesLand.setGemeldetAm(new Date());
-        }
-        return this.neuesLand;
+        this.gefilterteLaender = LaenderListeController.getInstance().getLaender();
     }
 
     public void handleSave() {
@@ -67,5 +57,25 @@ public class Laenderliste implements Serializable {
         LaenderListeController.getInstance().saveSingleEdit(land);
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Update eingereicht", "Änderungsvorschlag für " + land.getName() + " wurde gespeichert.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+
+    public List<Land> getLaenderListe() {
+        return laenderListe;
+    }
+
+    public Land getNeuesLand() {
+        if(null == neuesLand) {
+            this.neuesLand = new Land();
+            neuesLand.setGemeldetAm(new Date());
+        }
+        return this.neuesLand;
+    }
+
+    public List<Land> getGefilterteLaender() {
+        return gefilterteLaender;
+    }
+
+    public void setGefilterteLaender(List<Land> gefilterteLaender) {
+        this.gefilterteLaender = gefilterteLaender;
     }
 }
