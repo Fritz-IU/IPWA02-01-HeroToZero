@@ -1,5 +1,6 @@
 package com.example.herotozero;
 
+import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
@@ -13,10 +14,14 @@ import java.util.List;
 @ViewScoped
 public class LaenderUpdate implements Serializable {
 
-    private static LaenderUpdate instance = new LaenderUpdate();
     private List<LandUpdate> laenderUpdate = new ArrayList<LandUpdate>();
 
     public LaenderUpdate() {
+
+    }
+
+    @PostConstruct
+    public void init() {
         listeAktualisieren();
     }
 
@@ -42,10 +47,6 @@ public class LaenderUpdate implements Serializable {
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fehler", "Ablehnen der Aktualisierung von " + update.getName() + " ist fehlgeschlagen: " + e.getMessage()));
         }
-    }
-
-    public static LaenderUpdate getInstance() {
-        return instance;
     }
 
     public List<LandUpdate> getLaenderUpdate() {

@@ -1,8 +1,11 @@
 package com.example.herotozero;
 
+import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 
 import java.io.Serializable;
@@ -11,19 +14,22 @@ import java.util.List;
 import java.util.Date;
 
 @Named("Laender")
-@ApplicationScoped
+@ViewScoped
 public class Laenderliste implements Serializable {
-    private static Laenderliste instance = new Laenderliste();
+
     private List<Land> laenderListe = new ArrayList<Land>();
     private Land neuesLand = null;
 
-    //Lädt initial beim Start die Liste der Länder aus der Datenbank
     public Laenderliste() {
-        this.laenderListe = LaenderListeController.getInstance().getLaender();
     }
 
-    public static Laenderliste getInstance() {
-        return instance;
+    @PostConstruct
+    public void init() {
+        listeAktualisieren();
+    }
+
+    public void listeAktualisieren() {
+        this.laenderListe = LaenderListeController.getInstance().getLaender();
     }
 
     public List<Land> getLaenderListe() {
@@ -46,7 +52,7 @@ public class Laenderliste implements Serializable {
             this.laenderListe = LaenderListeController.getInstance().getLaender();
             //Für das nächste neue Land zurücksetzten. Alle daten des vorherigen Hinzufügens müssen weg.
             this.neuesLand = null;
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erfolg", "Land erfolgreich hinzugefügt."));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Erfolg", "Land erfolgreich hinzugefügt."));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fehler", e.getMessage()));
         }
