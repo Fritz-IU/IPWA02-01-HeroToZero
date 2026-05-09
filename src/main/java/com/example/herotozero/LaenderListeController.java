@@ -133,6 +133,7 @@ public class LaenderListeController implements Serializable {
         LandUpdate verwalteUpdate = em.find(LandUpdate.class, update.getID());
         verwalteUpdate.setUpdateStatus(UpdateStatus.AKZEPTIERT);
         em.merge(verwalteUpdate);
+        et.commit();
         em.close();
     }
 

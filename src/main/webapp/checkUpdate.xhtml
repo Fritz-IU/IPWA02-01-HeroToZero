@@ -32,8 +32,8 @@
             </p:column>
             <p:column headerText="Aktion">
                 <p:panelGrid columns="2">
-                    <p:commandButton value="Akzeptieren" icon="pi pi-thumbs-up" action="#{Update.accept(landUpdate)}" update="updateTable" styleClass="ui-button-success"/>
-                    <p:commandButton value="Ablehnen" icon="pi pi-thumbs-down" action="#{controller.rejectUpdate(landUpdate)}" update="updateTable" styleClass="ui-badge-danger" />
+                    <p:commandButton value="Akzeptieren" icon="pi pi-thumbs-up" action="#{Update.accept(landUpdate)}" update="updateTable msgs" styleClass="ui-button-success"/>
+                    <p:commandButton value="Ablehnen" icon="pi pi-thumbs-down" action="#{Update.reject(landUpdate)}" update="updateTable msgs" styleClass="ui-badge-danger" />
                 </p:panelGrid>
             </p:column>
         </p:dataTable>
