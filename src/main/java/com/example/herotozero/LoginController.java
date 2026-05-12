@@ -1,5 +1,6 @@
 package com.example.herotozero;
 
+import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.component.UIInput;
@@ -7,46 +8,19 @@ import jakarta.faces.context.FacesContext;
 import jakarta.faces.event.AbortProcessingException;
 import jakarta.faces.event.ComponentSystemEvent;
 import jakarta.faces.validator.ValidatorException;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Named;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+@Named("Login")
+@SessionScoped
 public class LoginController implements Serializable {
-    String name;
-    Benutzer benutzer;
-
-    List<Benutzer> benutzerliste;
-
-    public LoginController() {
-        this.benutzerliste = new ArrayList<Benutzer>();
-        this.benutzer = new Benutzer();
-    }
-
-    public void postValidateName(ComponentSystemEvent ev) throws AbortProcessingException {
-        UIInput tmp = (UIInput)ev.getComponent();
-        this.name = (String) tmp.getValue();
-        int breakpoint = 1;
-    }
-
-    public void validateLogin(FacesContext context, UIComponent component, Object value) throws ValidatorException {
-        for(Benutzer b:benutzerliste) {
-            Benutzer tmp = new Benutzer(this.name, (String)value);
-            if(b.equals(tmp))
-                return;
-        }
-        throw new ValidatorException(new FacesMessage("Login falsch!"));
-    }
-
-    public String adminLogin() {
-        int breakpoint = 1;
-        if (this.name.equals("Admin"))
-            return "checkUpdate";
-        else if (this.name.equals("Wissenschaftler"))
-            return "editCO2";
-        else
-            return "showCO2";
-    }
+    private String name;
+    private String passwort;
+    private Benutzer benutzerAngemeldet;
 
     public String getName() {
         return name;
@@ -56,11 +30,19 @@ public class LoginController implements Serializable {
         this.name = name;
     }
 
-    public Benutzer getBenutzer() {
-        return benutzer;
+    public String getPasswort() {
+        return passwort;
     }
 
-    public void setBenutzer(Benutzer benutzer) {
-        this.benutzer = benutzer;
+    public void setPasswort(String passwort) {
+        this.passwort = passwort;
+    }
+
+    public Benutzer getBenutzerAngemeldet() {
+        return benutzerAngemeldet;
+    }
+
+    public void setBenutzerAngemeldet(Benutzer benutzerAngemeldet) {
+        this.benutzerAngemeldet = benutzerAngemeldet;
     }
 }

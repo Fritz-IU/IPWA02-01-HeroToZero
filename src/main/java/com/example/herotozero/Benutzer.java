@@ -1,17 +1,25 @@
 package com.example.herotozero;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Benutzer {
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Integer ID;
     String name;
     String passwort;
+    @Enumerated(EnumType.STRING)
+    private Rolle rolle = Rolle.BENUTZER;
 
     public Benutzer() {
-
     }
 
     public Benutzer(String name, String passwort) {
         super();
         this.name = name;
         this.passwort = passwort;
+        this.rolle = Rolle.BENUTZER;
     }
 
     @Override
@@ -39,5 +47,21 @@ public class Benutzer {
 
     public void setPasswort(String passwort) {
         this.passwort = passwort;
+    }
+
+    public Integer getID() {
+        return ID;
+    }
+
+    public void setID(Integer ID) {
+        this.ID = ID;
+    }
+
+    public Rolle getRolle() {
+        return rolle;
+    }
+
+    public void setRolle(Rolle rolle) {
+        this.rolle = rolle;
     }
 }

@@ -156,4 +156,22 @@ public class LaenderListeController implements Serializable {
             em.close();
         }
     }
+
+    public Benutzer login(String name, String passwort) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            TypedQuery<Benutzer> query = em.createQuery("SELECT b FROM Benutzer b WHERE b.name = :name", Benutzer.class);
+            query.setParameter("name", name);
+            Benutzer b = query.getSingleResult();
+
+            if (b != null && b.getPasswort().equals(passwort)) {
+                return b;
+            }
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            em.close();
+        }
+        return null;
+    }
 }
