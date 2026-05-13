@@ -22,6 +22,36 @@ public class LoginController implements Serializable {
     private String passwort;
     private Benutzer benutzerAngemeldet;
 
+    public String login() {
+        Benutzer b = LaenderListeController.getInstance().login(name, passwort);
+        if (b != null) {
+            this.benutzerAngemeldet = b;
+            if (b.getRolle() == Rolle.WISSENSCHAFTLER) {
+                return "editCO2";
+            } else if (b.getRolle() == Rolle.ADMIN) {
+                return "checkUpdate";
+            } else {
+                return "showCO2";
+            }
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fehler", "Der Login ist fehlgeschlagen!"));
+            return null;
+        }
+    }
+
+    public String logout() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "showCO2";
+    }
+
+    public boolean isWissen() {
+        return benutzerAngemeldet != null && benutzerAngemeldet.getRolle() == Rolle.WISSENSCHAFTLER;
+    }
+
+    public boolean isAdmin() {
+        return benutzerAngemeldet != null && benutzerAngemeldet.getRolle() == Rolle.ADMIN;
+    }
+
     public String getName() {
         return name;
     }
