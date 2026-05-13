@@ -62,6 +62,10 @@ public class LaenderListeController implements Serializable {
         return "addLand";
     }
 
+    public String anmeldung() {
+        return "login";
+    }
+
     public String saveEdit() {
         EntityManager em = emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
@@ -173,5 +177,23 @@ public class LaenderListeController implements Serializable {
             em.close();
         }
         return null;
+    }
+
+    public boolean registrieren(Benutzer neuerBenutzer) throws Exception {
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+            et.begin();
+            List<Benutzer> existiert = em.createQuery("SELECT b FROM Benutzer b WHERE b.name = :n", Benutzer.class).setParameter("n", neuerBenutzer.getName()).getResultList();
+            if (!existiert.isEmpty()) {
+                throw new Exception("Benutzername wird bereits verwendet.");
+            } else {
+                em.persist(neuerBenutzer);
+                et.commit();
+                em.close();
+                return true;
+            }
+
+
+
     }
 }
