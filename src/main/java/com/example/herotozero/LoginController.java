@@ -66,7 +66,7 @@ public class LoginController implements Serializable {
     }
 
     public boolean isWissen() {
-        return benutzerAngemeldet != null && benutzerAngemeldet.getRolle() == Rolle.WISSENSCHAFTLER;
+        return (benutzerAngemeldet != null && benutzerAngemeldet.getRolle() == Rolle.WISSENSCHAFTLER) || isAdmin();
     }
 
     public boolean isAdmin() {
