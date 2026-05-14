@@ -66,6 +66,10 @@ public class LaenderListeController implements Serializable {
         return "login";
     }
 
+    public String registrierung() {
+        return "registrieren";
+    }
+
     public String saveEdit() {
         EntityManager em = emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
