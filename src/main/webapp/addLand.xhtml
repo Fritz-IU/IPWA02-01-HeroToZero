@@ -27,10 +27,6 @@
                 <p:tooltip id="ttdatum" for="datum" showEvent="focus" hideEvent="blur" position="top"/>
             </p:column>
         </p:dataTable>
-        <h:panelGrid columns="2">
-            <p:commandButton value="Zurück" icon="pi pi-arrow-left" immediate="true" action="#{Laender.abbruch()}"/>
-            <p:commandButton value="Land hinzufügen" icon="pi pi-save" update="landHinzufuegen" action="#{Laender.handleSave()}" />
-        </h:panelGrid>
         <p:tooltip globalSelector="input, .ui-inputfield, .ui-datepicker-input" showEvent="focus click" hideEvent="blur" position="top"/>
     </h:form>
     </ui:define>

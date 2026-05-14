@@ -42,7 +42,7 @@ public class LoginController implements Serializable {
 
     public String logout() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        return "showCO2";
+        return "showCO2?faces-redirect=true";
     }
 
     public String registrieren() {
