@@ -1,46 +1,44 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
-
-<h:head><title>Like Hero To Zero</title></h:head>
-<h:body>
-    <h1>CO2-Emissionen</h1>
-    <h:form>
-        <p:dataTable id="laenderTabelle" var="land" value="#{Laender.laenderListe}"
-                     widgetVar="laenderTabelle"
-                     emptyMessage="Kein Land mit diesen Namen gefunden."
-                     filteredValue="#{Laender.gefilterteLaender}"
-                     globalFilterOnly="true">
-            <f:facet name="header">
-                <div class="flex justify-contend-end">
-                    <p:inputText id="globalFilter"
-                                 onkeyup="PF('laenderTabelle').filter()"
-                                 style="width: 300px"
-                                 placeholder="Land suchen" />
-                </div>
-            </f:facet>
-            <p:column headerText="Land" sortBy="#{land.name}" filterBy="#{land.name}" filterMatchMode="contains">
-                <h:outputText value="#{land.name}"/>
-            </p:column>
-            <p:column headerText="Ländercode" filterBy="#{land.name}" filterMatchMode="contains">
-                <h:outputText value="#{land.laendercode}"/>
-            </p:column>
-            <p:column headerText="Jährliche CO2-Emision">
-                <h:outputText value="#{land.co2Emission}" >
-                    <f:convertNumber type="number" pattern="#,##0.00' t'" locale="de_DE" />
-                </h:outputText>
-            </p:column>
-            <p:column headerText="Meldedatum">
-                <p:datePicker value="#{land.gemeldetAm}" patter="dd.MM.yyyy" disabled="true">
-                </p:datePicker>
-            </p:column>
-        </p:dataTable>
-        <p:commandButton value="Liste bearbeiten" icon="pi pi-pencil" action="#{controller.startEdit()}" />
-        <p:commandButton value="Aktualisierungen prüfen" icon="pi pi-pencil" action="#{controller.checkUpdate()}" />
-        <p:commandButton value="Anmeldung" icon="pi pi-user" action="#{controller.registrierung()}" />
-    </h:form>
-
-</h:body>
-</html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="WEB-INF/template/template.xhtml">
+    <ui:define name="content">
+        <h1>CO2-Emissionen</h1>
+        <h:form>
+            <p:dataTable id="laenderTabelle" var="land" value="#{Laender.laenderListe}"
+                         widgetVar="laenderTabelle"
+                         emptyMessage="Kein Land mit diesen Namen gefunden."
+                         filteredValue="#{Laender.gefilterteLaender}"
+                         globalFilterOnly="true">
+                <f:facet name="header">
+                    <div class="flex justify-contend-end">
+                        <p:inputText id="globalFilter"
+                                     onkeyup="PF('laenderTabelle').filter()"
+                                     style="width: 300px"
+                                     placeholder="Land suchen" />
+                    </div>
+                </f:facet>
+                <p:column headerText="Land" sortBy="#{land.name}" filterBy="#{land.name}" filterMatchMode="contains">
+                    <h:outputText value="#{land.name}"/>
+                </p:column>
+                <p:column headerText="Ländercode" filterBy="#{land.name}" filterMatchMode="contains">
+                    <h:outputText value="#{land.laendercode}"/>
+                </p:column>
+                <p:column headerText="Jährliche CO2-Emision">
+                    <h:outputText value="#{land.co2Emission}" >
+                        <f:convertNumber type="number" pattern="#,##0.00' t'" locale="de_DE" />
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Meldedatum">
+                    <p:datePicker value="#{land.gemeldetAm}" patter="dd.MM.yyyy" disabled="true">
+                    </p:datePicker>
+                </p:column>
+            </p:dataTable>
+            <p:commandButton value="Liste bearbeiten" icon="pi pi-pencil" action="#{controller.startEdit()}" />
+            <p:commandButton value="Aktualisierungen prüfen" icon="pi pi-pencil" action="#{controller.checkUpdate()}" />
+            <p:commandButton value="Anmeldung" icon="pi pi-user" action="#{controller.registrierung()}" />
+        </h:form>
+    </ui:define>
+</ui:composition>
