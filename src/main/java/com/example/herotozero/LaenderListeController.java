@@ -179,13 +179,13 @@ public class LaenderListeController implements Serializable {
         return null;
     }
 
-    public boolean registrieren(Benutzer neuerBenutzer) throws Exception {
+    public boolean registrieren(Benutzer neuerBenutzer) {
         EntityManager em = emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
             et.begin();
             List<Benutzer> existiert = em.createQuery("SELECT b FROM Benutzer b WHERE b.name = :n", Benutzer.class).setParameter("n", neuerBenutzer.getName()).getResultList();
             if (!existiert.isEmpty()) {
-                throw new Exception("Benutzername wird bereits verwendet.");
+                return false;
             } else {
                 em.persist(neuerBenutzer);
                 et.commit();
