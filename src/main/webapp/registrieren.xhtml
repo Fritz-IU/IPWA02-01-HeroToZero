@@ -17,14 +17,17 @@
 
                 <p:row>
                     <p:outputLabel value="Passwort: " for="passwort" />
-                    <p:password id="passwort" value="#{Login.neuerBenutzer.passwort}" style="width: 100%" required="true" requiredMessage="Bitte Passwort eingaben." />
+                    <p:password id="passwort" value="#{Login.neuerBenutzer.passwort}" style="width: 100%" required="true" requiredMessage="Bitte Passwort eingeben." />
+                </p:row>
+                <p:row>
+                    <p:outputLabel value="Rolle: " for="rolle" />
+                    <p:selectOneMenu id="rolle" value="#{Login.neuerBenutzer.rolle}" style="width: 100%" required="true" requiredMessage="Bitte Rolle auswählen.">
+                        <f:selectItems value="#{Login.rolle}" var="r" itemLabel="#{r}" itemValue="#{r}" />
+                    </p:selectOneMenu>
                 </p:row>
             </p:panelGrid>
             <f:facet name="footer">
                 <p:commandButton value="Registrieren" action="#{Login.registrieren()}" icon="pi pi-pencil" style="width: 100%" />
-                <p:messages closable="true">
-                    <p:autoUpdate />
-                </p:messages>
             </f:facet>
         </p:card>
     </h:form>

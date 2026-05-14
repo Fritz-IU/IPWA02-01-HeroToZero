@@ -31,28 +31,7 @@
             <p:commandButton value="Zurück" icon="pi pi-arrow-left" immediate="true" action="#{Laender.abbruch()}"/>
             <p:commandButton value="Land hinzufügen" icon="pi pi-save" update="landHinzufuegen" action="#{Laender.handleSave()}" />
         </h:panelGrid>
-        <p:growl id="growl" showDetail="true" life="3000" />
-        <p:messages id="messages" showDetail="true" closable="true" />
         <p:tooltip globalSelector="input, .ui-inputfield, .ui-datepicker-input" showEvent="focus click" hideEvent="blur" position="top"/>
-    </h:form>
-
-    <h:form>
-        <p:panelGrid columns="2" >
-            <h:outputLabel for="pname" value="Land:"/>
-            <p:inputText id="pname" value="#{land.name}" required="true" title="Bitte gebe den Namen des Landes an."/>
-
-            <h:outputLabel for="plaendercode" value="Ländercode:"/>
-            <p:inputText id="plaendercode" value="#{land.laendercode}" required="true" maxlength="2" oninput="this.value = this.value.replace(/\s|[^A-Z]/gi, '').toUpperCase()"
-                         requiredMessage="Bitte gibt einen Ländercode an!" validatorMessage="Der Ländercode muss zwei Buchstaben lang sein!" title="Bitte gebe den zweistelligen Ländercode nach ISO 3166-1 an."/>
-
-            <h:outputLabel for="pCO2Emission" value="CO2-Emission:"/>
-            <p:inputNumber id="pCO2Emission" value="#{land.co2Emission}" required="true" symbol=" t" symbolPosition="s" decimalPlaces="2" title="Bitte gebe die CO2-Emmisionen an."/>
-
-            <h:outputLabel for="pdate" value="Meldedatum:"/>
-            <p:datePicker id="pdate" value="#{land.gemeldetAm}" locale="de" patter="dd.MM.yyyy" required="true" title="Bitte gebe das Datum deiner Meldung an."/>
-
-        </p:panelGrid>
-
     </h:form>
     </ui:define>
 </ui:composition>
