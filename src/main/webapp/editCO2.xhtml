@@ -16,13 +16,13 @@
                     <f:validateLength minimum="2"/>
                 </p:inputText>
             </p:column>
+            <p:column headerText="Jahr">
+                <p:inputNumber value="#{land.jahr}" decimalPlaces="0" minValue="1900" maxValue="2100" required="true" disabled="false">
+                </p:inputNumber>
+            </p:column>
             <p:column headerText="Jährliche CO2-Emision">
                 <p:inputNumber value="#{land.co2Emission}" symbol=" t" symbolPosition="s" decimalPlaces="2" required="true">
                 </p:inputNumber>
-            </p:column>
-            <p:column headerText="Meldedatum">
-                <p:datePicker value="#{land.gemeldetAm}" patter="dd.MM.yyyy" required="true">
-                </p:datePicker>
             </p:column>
             <p:column headerText="Änderungen Speichern">
                 <p:commandButton value="Anderung speichern" icon="pi pi-save" action="#{Laender.updateSingleLand(land)}" update="@this :messages" process="@this @parent:@parent"/>

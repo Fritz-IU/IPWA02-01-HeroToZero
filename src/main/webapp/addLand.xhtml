@@ -18,13 +18,13 @@
                 </p:inputText>
                 <p:tooltip id="ttlaendercode" for="laendercode" showEvent="focus" hideEvent="blur" position="top" value="Bitte gebe den zweistelligen Ländercode nach ISO 3166-1 an."/>
             </p:column>
-            <p:column headerText="Jährliche CO2-Emision">
-                <p:inputNumber id="co2Emision" value="#{land.co2Emission}" symbol=" t" symbolPosition="s" decimalPlaces="2" required="true" title="Bitte gebe die CO2-Emmisionen an."/>
-                <p:tooltip id="ttco2Emision" for="co2Emision" showEvent="focus" hideEvent="blur" position="top" value="Bitte gebe die CO2-Emmisionen an."/>
-            </p:column>
-            <p:column headerText="Meldedatum">
-                <p:datePicker id="datum" value="#{land.gemeldetAm}" locale="de" patter="dd.MM.yyyy" required="true" title="Bitte gebe das Datum deiner Meldung an."/>
+            <p:column headerText="Jahr">
+                <p:datePicker id="datum" value="#{land.jahr}" locale="de" patter="dd.MM.yyyy" required="true" title="Bitte gebe das Jahr an, in dem die CO2-Emissionen ausgestoßen wurden."/>
                 <p:tooltip id="ttdatum" for="datum" showEvent="focus" hideEvent="blur" position="top"/>
+            </p:column>
+            <p:column headerText="Jährliche CO2-Emision">
+                <p:inputNumber id="co2Emision" value="#{land.co2Emission}" symbol=" t" symbolPosition="s" decimalPlaces="2" required="true" title="Bitte gebe die CO2-Emmisionen für ein Jahr an."/>
+                <p:tooltip id="ttco2Emision" for="co2Emision" showEvent="focus" hideEvent="blur" position="top" value="Bitte gebe die CO2-Emmisionen an."/>
             </p:column>
         </p:dataTable>
         <p:tooltip globalSelector="input, .ui-inputfield, .ui-datepicker-input" showEvent="focus click" hideEvent="blur" position="top"/>
