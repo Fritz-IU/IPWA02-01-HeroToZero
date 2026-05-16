@@ -84,7 +84,7 @@ public class LaenderListeController implements Serializable {
         EntityManager em = emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
         et.begin();
-        LandUpdate landVorschlag = new LandUpdate(landAenderung.getLaendercode(), landAenderung.getName(), landAenderung.getCo2Emission(), landAenderung.getGemeldetAm(), landAenderung.getID());
+        LandUpdate landVorschlag = new LandUpdate(landAenderung.getLaendercode(), landAenderung.getName(), landAenderung.getCo2Emission(), landAenderung.getJahr(), landAenderung.getID());
         em.persist(landVorschlag);
         et.commit();
     }
@@ -105,10 +105,10 @@ public class LaenderListeController implements Serializable {
             et.begin();
             LandUpdate landVorschlag;
             if (neuesLand.getID() == null) {
-                landVorschlag = new LandUpdate(neuesLand.getLaendercode(), neuesLand.getName(), neuesLand.getCo2Emission(), neuesLand.getGemeldetAm());
+                landVorschlag = new LandUpdate(neuesLand.getLaendercode(), neuesLand.getName(), neuesLand.getCo2Emission(), neuesLand.getJahr());
                 //em.persist(neuesLand);
             } else {
-                landVorschlag = new LandUpdate(neuesLand.getLaendercode(), neuesLand.getName(), neuesLand.getCo2Emission(), neuesLand.getGemeldetAm(), neuesLand.getID());
+                landVorschlag = new LandUpdate(neuesLand.getLaendercode(), neuesLand.getName(), neuesLand.getCo2Emission(), neuesLand.getJahr(), neuesLand.getID());
                 //em.merge(neuesLand);
             }
             em.persist(landVorschlag);
@@ -128,14 +128,14 @@ public class LaenderListeController implements Serializable {
             vorhanden.setName(update.getName());
             vorhanden.setLaendercode(update.getLaendercode());
             vorhanden.setCo2Emission(update.getCo2Emission());
-            vorhanden.setGemeldetAm(update.getGemeldetAm());
+            vorhanden.setJahr(update.getJahr());
             em.merge(vorhanden);
         } else {
             Land neu = new Land();
             neu.setName(update.getName());
             neu.setLaendercode(update.getLaendercode());
             neu.setCo2Emission(update.getCo2Emission());
-            neu.setGemeldetAm(update.getGemeldetAm());
+            neu.setJahr(update.getJahr());
             em.persist(neu);
         }
         LandUpdate verwalteUpdate = em.find(LandUpdate.class, update.getID());
@@ -186,18 +186,15 @@ public class LaenderListeController implements Serializable {
     public boolean registrieren(Benutzer neuerBenutzer) {
         EntityManager em = emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
-            et.begin();
-            List<Benutzer> existiert = em.createQuery("SELECT b FROM Benutzer b WHERE b.name = :n", Benutzer.class).setParameter("n", neuerBenutzer.getName()).getResultList();
-            if (!existiert.isEmpty()) {
-                return false;
-            } else {
-                em.persist(neuerBenutzer);
-                et.commit();
-                em.close();
-                return true;
-            }
-
-
-
+        et.begin();
+        List<Benutzer> existiert = em.createQuery("SELECT b FROM Benutzer b WHERE b.name = :n", Benutzer.class).setParameter("n", neuerBenutzer.getName()).getResultList();
+        if (!existiert.isEmpty()) {
+            return false;
+        } else {
+            em.persist(neuerBenutzer);
+            et.commit();
+            em.close();
+            return true;
+        }
     }
 }

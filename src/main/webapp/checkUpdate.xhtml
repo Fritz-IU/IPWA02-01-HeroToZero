@@ -14,14 +14,13 @@
             <p:column headerText="Ländercode">
                 <h:outputText value="#{landUpdate.laendercode}"/>
             </p:column>
+            <p:column headerText="Jahr">
+                <p:inputNumber value="#{landUpdate.jahr}" disabled="true" />
+            </p:column>
             <p:column headerText="Jährliche CO2-Emision">
                 <h:outputText value="#{landUpdate.co2Emission}">
                     <f:convertNumber type="number" pattern="#,##0.00' t'" locale="de_DE" />
                 </h:outputText>
-            </p:column>
-            <p:column headerText="Meldedatum">
-                <p:datePicker value="#{landUpdate.gemeldetAm}" patter="dd.MM.yyyy" disabled="true">
-                </p:datePicker>
             </p:column>
             <p:column headerText="Neues Land oder aktualisierung?">
                 <p:selectBooleanButton value="#{!landUpdate.vorhandenLand}" onLabel="Neues Land" offLabel="Land aktualisiert" style="width: 200px" disabled="true"/>

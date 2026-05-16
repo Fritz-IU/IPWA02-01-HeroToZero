@@ -16,21 +16,21 @@ public class Land {
     private String laendercode;
     private String name;
     private double co2Emission;
-    private Date gemeldetAm;
+    private int jahr;
 
     public Land() {}
 
-    public Land(Date gemeldetAm) {
+    public Land(int gemeldetAm) {
         super();
-        this.gemeldetAm = gemeldetAm;
+        this.jahr = gemeldetAm;
     }
 
-    public Land(String laendercode, String name, double co2Emission, Date gemeldetAm) {
+    public Land(String laendercode, String name, double co2Emission, int jahr) {
         super();
         this.name = name;
         this.laendercode = laendercode;
         this.co2Emission = co2Emission;
-        this.gemeldetAm = gemeldetAm;
+        this.jahr = jahr;
     }
 
     public Integer getID(){
@@ -57,12 +57,12 @@ public class Land {
         this.co2Emission = co2Emission;
     }
 
-    public Date getGemeldetAm() {
-        return gemeldetAm;
+    public int getJahr() {
+        return jahr;
     }
 
-    public void setGemeldetAm(Date gemeldetAm) {
-        this.gemeldetAm = gemeldetAm;
+    public void setJahr(int jahr) {
+        this.jahr = jahr;
     }
 
     public String getLaendercode() {
