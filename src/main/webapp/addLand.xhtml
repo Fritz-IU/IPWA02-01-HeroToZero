@@ -5,7 +5,7 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="WEB-INF/template/template.xhtml">
     <ui:define name="content">
-    <h1>Land hinzufügen</h1>
+        <!--
     <h:form id="landHinzufuegen">
         <p:dataTable var="land" value="#{Laender.neuesLand}">
             <p:column headerText="Land">
@@ -25,5 +25,35 @@
         </p:dataTable>
         <p:tooltip globalSelector="input, .ui-inputfield, .ui-datepicker-input" showEvent="focus click" hideEvent="blur" position="top"/>
     </h:form>
+    -->
+        <h:form id="landHinzufuegen">
+            <p:card style="width: 30em">
+                <f:facet name="title"><i class="pi pi-globe" /> Land hinzufügen</f:facet>
+                <p:panelGrid columns="2" layout="grid">
+                    <p:row>
+                        <p:outputLabel value="Land: " for="land" />
+                        <p:inputText id="land" value="#{Laender.neuesLand.name}" title="Bitte gebe den Namen des Landes an." required="true"/>
+                    </p:row>
+                    <p:row>
+                        <p:outputLabel value="Ländercode: " for="code" />
+                        <p:inputText id="code" value="#{Laender.neuesLand.laendercode}" maxlength="2" required="true" oninput="this.value = this.value.replace(/\s|[^A-Z]/gi, '').toUpperCase()" title="Bitte gebe den zweistelligen Ländercode nach ISO 3166-1 an." requiredMessage="Bitte gibt einen Ländercode an!" validatorMessage="Der Ländercode muss zwei Buchstaben lang sein!">
+                            <f:validateLength minimum="2"/>
+                        </p:inputText>
+                    </p:row>
+                    <p:row>
+                        <p:outputLabel value="Jahr: " for="jahr" />
+                        <p:inputNumber id="jahr" value="#{Laender.neuesLand.jahr}" decimalPlaces="0" minValue="1900" maxValue="2100" thousandSeparator="" required="true" title="Bitte gebe das Jahr an, in dem die CO2-Emissionen ausgestoßen wurden."/>
+                    </p:row>
+                    <p:row>
+                        <p:outputLabel value="CO2-Emission: " for="co2" />
+                        <p:inputNumber id="co2" value="#{Laender.neuesLand.co2Emission}" symbol=" t" symbolPosition="s" decimalPlaces="2" required="true" title="Bitte gebe die CO2-Emmisionen für ein Jahr an."/>
+                    </p:row>
+                </p:panelGrid>
+                <f:facet name="footer">
+                    <p:commandButton value="Land hinzufügen" icon="pi pi-save" update="landHinzufuegen" action="#{Laender.handleSave()}" />
+                </f:facet>
+            </p:card>
+            <p:tooltip globalSelector="input, .ui-inputfield, .ui-datepicker-input" showEvent="focus click" hideEvent="blur" position="top"/>
+        </h:form>
     </ui:define>
 </ui:composition>
