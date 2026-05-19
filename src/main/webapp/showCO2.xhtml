@@ -17,7 +17,7 @@
                         <p:inputText id="globalFilter"
                                      onkeyup="PF('laenderTabelle').filter()"
                                      style="width: 300px"
-                                     placeholder="Land suchen" />
+                                     placeholder="Land suchen"/>
                     </div>
                 </f:facet>
                 <p:column headerText="Land" sortBy="#{land.name}" filterBy="#{land.name}" filterMatchMode="contains">
@@ -31,8 +31,8 @@
                     </h:outputText>
                 </p:column>
                 <p:column headerText="Jährliche CO2-Emision">
-                    <h:outputText value="#{land.co2Emission}" >
-                        <f:convertNumber type="number" pattern="#,##0.00' t'" locale="de_DE" />
+                    <h:outputText value="#{land.co2Emission}">
+                        <f:convertNumber type="number" pattern="#,##0.00' t'" locale="de_DE"/>
                     </h:outputText>
                 </p:column>
             </p:dataTable>

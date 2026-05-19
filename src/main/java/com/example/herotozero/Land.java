@@ -10,7 +10,7 @@ import java.util.Date;
 })
 public class Land {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ID;
     @Column(name = "laendercode", nullable = false, unique = true)
     private String laendercode;
@@ -18,7 +18,8 @@ public class Land {
     private double co2Emission;
     private int jahr;
 
-    public Land() {}
+    public Land() {
+    }
 
     public Land(int gemeldetAm) {
         super();
@@ -33,7 +34,7 @@ public class Land {
         this.jahr = jahr;
     }
 
-    public Integer getID(){
+    public Integer getID() {
         return this.ID;
     }
 

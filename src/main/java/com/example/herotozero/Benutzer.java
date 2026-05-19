@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 @Entity
 public class Benutzer {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ID;
     String name;
     String passwort;
@@ -24,9 +24,9 @@ public class Benutzer {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof  Benutzer) {
-            Benutzer b = (Benutzer)obj;
-            if(b.getName().equals(this.name) && b.getPasswort().equals(this.passwort)) {
+        if (obj instanceof Benutzer) {
+            Benutzer b = (Benutzer) obj;
+            if (b.getName().equals(this.name) && b.getPasswort().equals(this.passwort)) {
                 return true;
             }
         }

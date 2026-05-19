@@ -7,7 +7,7 @@ import java.util.Date;
 @Entity
 public class LandUpdate {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ID;
     private String laendercode;
     private String name;
@@ -19,7 +19,8 @@ public class LandUpdate {
     private Integer idLand;
     private Date logDate;
 
-    public LandUpdate(){    }
+    public LandUpdate() {
+    }
 
     public LandUpdate(String laendercode, String name, double co2Emission, int jahr) {
         super();

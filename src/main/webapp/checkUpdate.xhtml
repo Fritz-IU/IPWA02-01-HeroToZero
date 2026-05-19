@@ -5,36 +5,40 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="WEB-INF/template/template.xhtml">
     <ui:define name="content">
-    <h1>Aktualisierungen und neue Länder prüfen</h1>
-    <h:form>
-        <p:dataTable id="updateTable" var="landUpdate" value="#{Update.laenderUpdate}">
-            <p:column headerText="Land">
-                <h:outputText value="#{landUpdate.name}"/>
-            </p:column>
-            <p:column headerText="Ländercode">
-                <h:outputText value="#{landUpdate.laendercode}"/>
-            </p:column>
-            <p:column headerText="Jahr">
-                <p:inputNumber value="#{landUpdate.jahr}" disabled="true" />
-            </p:column>
-            <p:column headerText="Jährliche CO2-Emision">
-                <h:outputText value="#{landUpdate.co2Emission}">
-                    <f:convertNumber type="number" pattern="#,##0.00' t'" locale="de_DE" />
-                </h:outputText>
-            </p:column>
-            <p:column headerText="Neues Land oder aktualisierung?">
-                <p:selectBooleanButton value="#{!landUpdate.vorhandenLand}" onLabel="Neues Land" offLabel="Land aktualisiert" style="width: 200px" disabled="true"/>
-            </p:column>
-            <p:column headerText="Status der Überprüfung">
-                <h:outputText value="#{landUpdate.updateStatus}"/>
-            </p:column>
-            <p:column headerText="Aktion">
-                <p:panelGrid columns="2">
-                    <p:commandButton value="Akzeptieren" icon="pi pi-thumbs-up" action="#{Update.accept(landUpdate)}" update="updateTable msgs" styleClass="ui-button-success"/>
-                    <p:commandButton value="Ablehnen" icon="pi pi-thumbs-down" action="#{Update.reject(landUpdate)}" update="updateTable msgs" styleClass="ui-badge-danger" />
-                </p:panelGrid>
-            </p:column>
-        </p:dataTable>
-    </h:form>
+        <h1>Aktualisierungen und neue Länder prüfen</h1>
+        <h:form>
+            <p:dataTable id="updateTable" var="landUpdate" value="#{Update.laenderUpdate}">
+                <p:column headerText="Land">
+                    <h:outputText value="#{landUpdate.name}"/>
+                </p:column>
+                <p:column headerText="Ländercode">
+                    <h:outputText value="#{landUpdate.laendercode}"/>
+                </p:column>
+                <p:column headerText="Jahr">
+                    <p:inputNumber value="#{landUpdate.jahr}" disabled="true"/>
+                </p:column>
+                <p:column headerText="Jährliche CO2-Emision">
+                    <h:outputText value="#{landUpdate.co2Emission}">
+                        <f:convertNumber type="number" pattern="#,##0.00' t'" locale="de_DE"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Neues Land oder aktualisierung?">
+                    <p:selectBooleanButton value="#{!landUpdate.vorhandenLand}" onLabel="Neues Land"
+                                           offLabel="Land aktualisiert" style="width: 200px" disabled="true"/>
+                </p:column>
+                <p:column headerText="Status der Überprüfung">
+                    <h:outputText value="#{landUpdate.updateStatus}"/>
+                </p:column>
+                <p:column headerText="Aktion">
+                    <p:panelGrid columns="2">
+                        <p:commandButton value="Akzeptieren" icon="pi pi-thumbs-up"
+                                         action="#{Update.accept(landUpdate)}" update="updateTable msgs"
+                                         styleClass="ui-button-success"/>
+                        <p:commandButton value="Ablehnen" icon="pi pi-thumbs-down" action="#{Update.reject(landUpdate)}"
+                                         update="updateTable msgs" styleClass="ui-badge-danger"/>
+                    </p:panelGrid>
+                </p:column>
+            </p:dataTable>
+        </h:form>
     </ui:define>
 </ui:composition>

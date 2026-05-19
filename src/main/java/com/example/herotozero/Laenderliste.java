@@ -64,7 +64,7 @@ public class Laenderliste implements Serializable {
     }
 
     public Land getNeuesLand() {
-        if(null == neuesLand) {
+        if (null == neuesLand) {
             this.neuesLand = new Land();
             this.neuesLand.setJahr(2025);
         }

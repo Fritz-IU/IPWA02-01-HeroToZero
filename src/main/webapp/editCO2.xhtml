@@ -5,30 +5,36 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="WEB-INF/template/template.xhtml">
     <ui:define name="content">
-    <h1>CO2-Emissionen aktualisieren</h1>
-    <h:form>
-        <p:dataTable var="land" value="#{Laender.laenderListe}">
-            <p:column headerText="Land">
-                <p:inputText value="#{land.name}" required="true" disabled="true"/>
-            </p:column>
-            <p:column headerText="Ländercode">
-                <p:inputText value="#{land.laendercode}" maxlength="2" required="true" disabled="true" oninput="this.value = this.value.replace(/\s|[^A-Z]/gi, '').toUpperCase()" validatorMessage="Der Ländercode muss zwei Buchstaben lang sein!">
-                    <f:validateLength minimum="2"/>
-                </p:inputText>
-            </p:column>
-            <p:column headerText="Jahr">
-                <p:inputNumber value="#{land.jahr}" decimalPlaces="0" minValue="1900" maxValue="2100" thousandSeparator="" required="true" disabled="true">
-                </p:inputNumber>
-            </p:column>
-            <p:column headerText="Jährliche CO2-Emision">
-                <p:inputNumber value="#{land.co2Emission}" symbol=" t" symbolPosition="s" decimalPlaces="2" required="true">
-                </p:inputNumber>
-            </p:column>
-            <p:column headerText="Änderungen Speichern">
-                <p:commandButton value="Anderung speichern" icon="pi pi-save" action="#{Laender.updateSingleLand(land)}" update="@this :messages" process="@this @parent:@parent"/>
-            </p:column>
-        </p:dataTable>
-    </h:form>
+        <h1>CO2-Emissionen aktualisieren</h1>
+        <h:form>
+            <p:dataTable var="land" value="#{Laender.laenderListe}">
+                <p:column headerText="Land">
+                    <p:inputText value="#{land.name}" required="true" disabled="true"/>
+                </p:column>
+                <p:column headerText="Ländercode">
+                    <p:inputText value="#{land.laendercode}" maxlength="2" required="true" disabled="true"
+                                 oninput="this.value = this.value.replace(/\s|[^A-Z]/gi, '').toUpperCase()"
+                                 validatorMessage="Der Ländercode muss zwei Buchstaben lang sein!">
+                        <f:validateLength minimum="2"/>
+                    </p:inputText>
+                </p:column>
+                <p:column headerText="Jahr">
+                    <p:inputNumber value="#{land.jahr}" decimalPlaces="0" minValue="1900" maxValue="2100"
+                                   thousandSeparator="" required="true" disabled="true">
+                    </p:inputNumber>
+                </p:column>
+                <p:column headerText="Jährliche CO2-Emision">
+                    <p:inputNumber value="#{land.co2Emission}" symbol=" t" symbolPosition="s" decimalPlaces="2"
+                                   required="true">
+                    </p:inputNumber>
+                </p:column>
+                <p:column headerText="Änderungen Speichern">
+                    <p:commandButton value="Anderung speichern" icon="pi pi-save"
+                                     action="#{Laender.updateSingleLand(land)}" update="@this :messages"
+                                     process="@this @parent:@parent"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
 
     </ui:define>
 </ui:composition>

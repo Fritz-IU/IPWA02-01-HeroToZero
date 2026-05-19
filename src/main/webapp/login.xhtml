@@ -5,24 +5,25 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="WEB-INF/template/template.xhtml">
     <ui:define name="content">
-    <h1>Anmeldung bei Hero To Zero</h1>
-    <h:form id="loginForm">
-        <p:card style="width: 25em">
-            <f:facet name="title"><i class="pi pi-user" /> Login</f:facet>
-            <p:panelGrid columns="1" layout="grid">
-                <p:row>
-                    <p:outputLabel value="Benutzername: " for="name" />
+        <div class="d-flex justify-content-center">
+            <h:form id="loginForm">
+                <p:card style="width: 25em">
+                    <f:facet name="title"><i class="pi pi-user" /> Login</f:facet>
+                    <p:panelGrid columns="1" layout="grid">
+                        <p:row>
+                            <p:outputLabel value="Benutzername: " for="name" />
                     <p:inputText id="name" value="#{Login.name}" style="width: 100%" required="true" requiredMessage="Bitte Benutzernamen eingeben." />
-                </p:row>
-                <p:row>
-                    <p:outputLabel value="Passwort: " for="passwort" />
-                    <p:password id="passwort" value="#{Login.passwort}" feedback="false" style="width: 100%" required="true" requiredMessage="Bitte Passwort eingaben." />
-                </p:row>
-            </p:panelGrid>
-            <f:facet name="footer">
-                <p:commandButton value="Anmelden" action="#{Login.login()}" icon="pi pi-check" style="width: 100%" />
-            </f:facet>
-        </p:card>
-    </h:form>
+                        </p:row>
+                        <p:row>
+                            <p:outputLabel value="Passwort: " for="passwort" />
+                            <p:password id="passwort" value="#{Login.passwort}" feedback="false" style="width: 100%" required="true" requiredMessage="Bitte Passwort eingaben." />
+                        </p:row>
+                    </p:panelGrid>
+                    <f:facet name="footer">
+                        <p:commandButton value="Anmelden" action="#{Login.login()}" icon="pi pi-check" style="width: 100%" />
+                    </f:facet>
+                </p:card>
+            </h:form>
+        </div>
     </ui:define>
 </ui:composition>
