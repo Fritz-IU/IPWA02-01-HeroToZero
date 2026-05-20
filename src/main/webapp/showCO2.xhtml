@@ -9,24 +9,35 @@
         <h:form>
             <p:dataTable id="laenderTabelle" var="land" value="#{Laender.laenderListe}"
                          widgetVar="laenderTabelle"
-                         emptyMessage="Kein Land mit diesen Namen gefunden."
-                         filteredValue="#{Laender.gefilterteLaender}"
-                         globalFilterOnly="true">
+                         emptyMessage="Kein Eintrag zu dem Land in dem Jahr gefunden."
+                         filteredValue="#{Laender.gefilterteLaender}">
                 <f:facet name="header">
-                    <div class="flex justify-contend-end">
+                    <div class="d-flex justify-content-end gap-4">
                         <p:inputText id="globalFilter"
                                      onkeyup="PF('laenderTabelle').filter()"
                                      style="width: 200px"
-                                     placeholder="Land suchen"/>
+                                     placeholder="Land suchen..."/>
+                        <div class="d-flex align-items-center gap-2">
+                            <h:outputText id="sliderLable" value="Jahr: #{Laender.selectedJahr}" />
+                            <h:inputHidden id="jahrFilterValue" value="#{Laender.selectedJahr}" />
+                            <p:slider for="jahrFilterValue" minValue="#{Laender.minJahr}" maxValue="#{Laender.maxJahr}"
+                                      style="width: 200px">
+                                <p:ajax event="slideEnd" process="@this jahrFilterValue" update="sliderLable"
+                                        oncomplete="$('.jahr-spalte .ui-column-filter').val($('[id$=\'jahrFilterValue\']').val()); PF('laenderTabelle').filter()"/>
+                            </p:slider>
+                        </div>
                     </div>
                 </f:facet>
-                <p:column headerText="Land" sortBy="#{land.name}" filterBy="#{land.name}" filterMatchMode="contains">
+                <p:column headerText="Land" sortBy="#{land.name}" filterBy="#{land.name}" filterMatchMode="contains"
+                          filterStyle="display: none">
                     <h:outputText value="#{land.name}"/>
                 </p:column>
-                <p:column headerText="Ländercode" filterBy="#{land.name}" filterMatchMode="contains">
+                <p:column headerText="Ländercode" filterBy="#{land.laendercode}" filterMatchMode="contains"
+                          filterStyle="display: none">
                     <h:outputText value="#{land.laendercode}"/>
                 </p:column>
-                <p:column headerText="Jahr">
+                <p:column headerText="Jahr" filterBy="#{land.jahr}" filterValue="#{Laender.selectedJahr}"
+                          filterMatchMode="exact" filterStyle="display: none" styleClass="jahr-spalte">
                     <h:outputText value="#{land.jahr}">
                     </h:outputText>
                 </p:column>

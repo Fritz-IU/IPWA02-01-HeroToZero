@@ -1,8 +1,6 @@
 package com.example.herotozero;
 
 import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
@@ -10,8 +8,11 @@ import jakarta.inject.Named;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Date;
+import java.util.Locale;
+import java.util.stream.Collectors;
+import java.text.Collator;
 
 @Named("Laender")
 @ViewScoped
@@ -20,6 +21,9 @@ public class Laenderliste implements Serializable {
     private List<Land> laenderListe = new ArrayList<Land>();
     private List<Land> gefilterteLaender;
     private Land neuesLand = null;
+    private int minJahr;
+    private int maxJahr;
+    private int selectedJahr;
 
     public Laenderliste() {
     }
@@ -27,10 +31,21 @@ public class Laenderliste implements Serializable {
     @PostConstruct
     public void init() {
         listeAktualisieren();
+        if (laenderListe != null && !laenderListe.isEmpty()) {
+            this.minJahr = laenderListe.stream().mapToInt(Land::getJahr).min().getAsInt();
+            this.maxJahr = laenderListe.stream().mapToInt(Land::getJahr).max().getAsInt();
+        } else {
+            this.minJahr = 2000;
+            this.maxJahr = 2026;
+        }
+        this.selectedJahr = this.maxJahr;
+        this.gefilterteLaender = this.laenderListe.stream().filter(l -> l.getJahr() == this.selectedJahr).collect(Collectors.toList());
     }
 
     public void listeAktualisieren() {
-        this.laenderListe = LaenderListeController.getInstance().getLaender();
+        Collator deCollator = Collator.getInstance(Locale.GERMAN);
+        deCollator.setStrength(Collator.PRIMARY);
+        this.laenderListe = LaenderListeController.getInstance().getLaender().stream().sorted((land1, land2) -> deCollator.compare(land1.getName(), land2.getName())).collect(Collectors.toList());
         this.gefilterteLaender = LaenderListeController.getInstance().getLaender();
     }
 
@@ -39,7 +54,8 @@ public class Laenderliste implements Serializable {
             //Neues Land-Objekt an den Controller zum Speichern senden
             LaenderListeController.getInstance().saveLand(this.neuesLand);
             //Liste der Länder neu aus der Datenbank laden, damit das neue Land auch auf der Webseite bzw. in derTabelle angezeigt wird. Tabelle muss auch neu geladen werden
-            this.laenderListe = LaenderListeController.getInstance().getLaender();
+            listeAktualisieren();
+            this.gefilterteLaender = this.laenderListe.stream().filter(l -> l.getJahr() == this.selectedJahr).collect(Collectors.toList());
             //Für das nächste neue Land zurücksetzten. Alle daten des vorherigen Hinzufügens müssen weg.
             this.neuesLand = null;
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Erfolg", "Land erfolgreich hinzugefügt."));
@@ -77,5 +93,29 @@ public class Laenderliste implements Serializable {
 
     public void setGefilterteLaender(List<Land> gefilterteLaender) {
         this.gefilterteLaender = gefilterteLaender;
+    }
+
+    public int getMinJahr() {
+        return minJahr;
+    }
+
+    public void setMinJahr(int minJahr) {
+        this.minJahr = minJahr;
+    }
+
+    public int getMaxJahr() {
+        return maxJahr;
+    }
+
+    public void setMaxJahr(int maxJahr) {
+        this.maxJahr = maxJahr;
+    }
+
+    public int getSelectedJahr() {
+        return selectedJahr;
+    }
+
+    public void setSelectedJahr(int selectedJahr) {
+        this.selectedJahr = selectedJahr;
     }
 }
