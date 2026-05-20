@@ -6,13 +6,13 @@ import java.util.Date;
 
 @Entity
 @Table(name = "land", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "laendercode")
+        @UniqueConstraint(columnNames = {"laendercode", "jahr"})
 })
 public class Land {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ID;
-    @Column(name = "laendercode", nullable = false, unique = true)
+    @Column(name = "laendercode", nullable = false)
     private String laendercode;
     private String name;
     private double co2Emission;
