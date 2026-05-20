@@ -93,13 +93,13 @@ public class LaenderListeController implements Serializable {
         EntityManager em = emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
         try {
-            List<Land> existiert = em.createQuery("SELECT l FROM Land l WHERE l.laendercode = :n", Land.class).setParameter("n", neuesLand.getLaendercode()).getResultList();
+            List<Land> existiert = em.createQuery("SELECT l FROM Land l WHERE l.laendercode = :code AND l.jahr = :jahr", Land.class).setParameter("code", neuesLand.getLaendercode()).setParameter("jahr", neuesLand.getJahr()).getResultList();
             if (!existiert.isEmpty()) {
                 if (neuesLand.getID() == null) {
-                    throw new Exception("Das Land existiert bereits in der Datenbank! Bitte aktualisiere den Eintrag des Landes!");
+                    throw new Exception("Für " + neuesLand.getName() + " existiert bereits ein Eintrag für das Jahr " + neuesLand.getJahr() + ". Bitte aktualisiere den vorhandene eintrag.");
                 }
                 if (!existiert.get(0).getID().equals(neuesLand.getID())) {
-                    throw new Exception("Das Land mit dem Ländercode wurde bereits angegeben! Bitte aktualisiere den Eintrag des Landes!");
+                    throw new Exception("Es existiert bereits eine anderer Eintrag für " + neuesLand.getName() + " im Jahr " + neuesLand.getJahr() + ".");
                 }
             }
             et.begin();
