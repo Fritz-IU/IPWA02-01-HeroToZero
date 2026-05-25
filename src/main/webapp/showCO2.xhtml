@@ -21,8 +21,8 @@
                             <h:outputText id="sliderLable" value="Jahr: #{Laender.selectedJahr}" />
                             <h:inputHidden id="jahrFilterValue" value="#{Laender.selectedJahr}" />
                             <p:slider for="jahrFilterValue" minValue="#{Laender.minJahr}" maxValue="#{Laender.maxJahr}"
-                                      style="width: 200px">
-                                <p:ajax event="slideEnd" process="@this jahrFilterValue" update="sliderLable"
+                                      display="sliderLable" displayTemplate="Jahr: {value}" style="width: 200px">
+                                <p:ajax event="slideEnd" process="@this jahrFilterValue"
                                         oncomplete="$('.jahr-spalte .ui-column-filter').val($('[id$=\'jahrFilterValue\']').val()); PF('laenderTabelle').filter()"/>
                             </p:slider>
                         </div>
