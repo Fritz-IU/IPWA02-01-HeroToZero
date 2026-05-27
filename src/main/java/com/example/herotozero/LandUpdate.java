@@ -16,7 +16,9 @@ public class LandUpdate {
     @Enumerated(EnumType.STRING)
     private UpdateStatus updateStatus = UpdateStatus.OFFEN;
     private boolean vorhandenLand;
-    private Integer idLand;
+    @ManyToOne
+    @JoinColumn(name = "idLand", referencedColumnName = "ID")
+    private Land land;
     private Date logDate;
 
     public LandUpdate() {
@@ -32,9 +34,9 @@ public class LandUpdate {
         this.logDate = new Date();
     }
 
-    public LandUpdate(String laendercode, String name, double co2Emission, int jahr, Integer idLand) {
+    public LandUpdate(String laendercode, String name, double co2Emission, int jahr, Land land) {
         this(laendercode, name, co2Emission, jahr);
-        this.idLand = idLand;
+        this.land = land;
         this.vorhandenLand = true;
     }
 
@@ -94,12 +96,12 @@ public class LandUpdate {
         this.vorhandenLand = vorhandenLand;
     }
 
-    public Integer getIdLand() {
-        return idLand;
+    public Land getLand() {
+        return land;
     }
 
-    public void setIdLand(Integer idLand) {
-        this.idLand = idLand;
+    public void setLand(Land land) {
+        this.land = land;
     }
 
     public Date getLogDate() {

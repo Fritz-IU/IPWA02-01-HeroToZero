@@ -81,12 +81,14 @@ public class LaenderListeController implements Serializable {
     }
 
     public void saveSingleEdit(Land landAenderung) {
+        System.out.println("--- DEBUG: Das übergebene Land hat die ID: " + landAenderung.getID());
         EntityManager em = emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
         et.begin();
-        LandUpdate landVorschlag = new LandUpdate(landAenderung.getLaendercode(), landAenderung.getName(), landAenderung.getCo2Emission(), landAenderung.getJahr(), landAenderung.getID());
+        LandUpdate landVorschlag = new LandUpdate(landAenderung.getLaendercode(), landAenderung.getName(), landAenderung.getCo2Emission(), landAenderung.getJahr(), landAenderung);
         em.persist(landVorschlag);
         et.commit();
+        em.close();
     }
 
     public void saveLand(Land neuesLand) throws Exception {
@@ -108,7 +110,7 @@ public class LaenderListeController implements Serializable {
                 landVorschlag = new LandUpdate(neuesLand.getLaendercode(), neuesLand.getName(), neuesLand.getCo2Emission(), neuesLand.getJahr());
                 //em.persist(neuesLand);
             } else {
-                landVorschlag = new LandUpdate(neuesLand.getLaendercode(), neuesLand.getName(), neuesLand.getCo2Emission(), neuesLand.getJahr(), neuesLand.getID());
+                landVorschlag = new LandUpdate(neuesLand.getLaendercode(), neuesLand.getName(), neuesLand.getCo2Emission(), neuesLand.getJahr(), neuesLand);
                 //em.merge(neuesLand);
             }
             em.persist(landVorschlag);
@@ -124,7 +126,7 @@ public class LaenderListeController implements Serializable {
         et.begin();
 
         if (update.isVorhandenLand()) {
-            Land vorhanden = em.find(Land.class, update.getIdLand());
+            Land vorhanden = em.find(Land.class, update.getLand().getID());
             vorhanden.setName(update.getName());
             vorhanden.setLaendercode(update.getLaendercode());
             vorhanden.setCo2Emission(update.getCo2Emission());
