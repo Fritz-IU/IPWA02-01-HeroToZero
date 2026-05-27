@@ -49,10 +49,10 @@ public class Laenderliste implements Serializable {
         this.gefilterteLaender = LaenderListeController.getInstance().getLaender();
     }
 
-    public void handleSave() {
+    public void handleSave(Benutzer aktuellerUser) {
         try {
             //Neues Land-Objekt an den Controller zum Speichern senden
-            LaenderListeController.getInstance().saveLand(this.neuesLand);
+            LaenderListeController.getInstance().saveLand(this.neuesLand, aktuellerUser);
             //Liste der Länder neu aus der Datenbank laden, damit das neue Land auch auf der Webseite bzw. in derTabelle angezeigt wird. Tabelle muss auch neu geladen werden
             listeAktualisieren();
             this.gefilterteLaender = this.laenderListe.stream().filter(l -> l.getJahr() == this.selectedJahr).collect(Collectors.toList());
@@ -69,8 +69,8 @@ public class Laenderliste implements Serializable {
         return "editCO2";
     }
 
-    public void updateSingleLand(Land land) {
-        LaenderListeController.getInstance().saveSingleEdit(land);
+    public void updateSingleLand(Land land, Benutzer aktuellerUser) {
+        LaenderListeController.getInstance().saveSingleEdit(land, aktuellerUser);
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Update eingereicht", "Änderungsvorschlag für " + land.getName() + " wurde gespeichert.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }

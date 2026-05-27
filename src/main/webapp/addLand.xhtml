@@ -41,7 +41,7 @@
                     </p:panelGrid>
                     <f:facet name="footer">
                         <p:commandButton value="Land hinzufügen" icon="pi pi-save" update="landHinzufuegen"
-                                         action="#{Laender.handleSave()}"/>
+                                         action="#{Laender.handleSave(Login.benutzerAngemeldet)}"/>
                     </f:facet>
                 </p:card>
                 <p:tooltip globalSelector="input, .ui-inputfield, .ui-datepicker-input" showEvent="focus click"

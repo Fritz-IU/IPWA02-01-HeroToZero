@@ -19,23 +19,27 @@ public class LandUpdate {
     @ManyToOne
     @JoinColumn(name = "idLand", referencedColumnName = "ID")
     private Land land;
+    @ManyToOne
+    @JoinColumn(name = "idUser", referencedColumnName = "ID")
+    private Benutzer benutzer;
     private Date logDate;
 
     public LandUpdate() {
     }
 
-    public LandUpdate(String laendercode, String name, double co2Emission, int jahr) {
+    public LandUpdate(String laendercode, String name, double co2Emission, int jahr, Benutzer benutzer) {
         super();
         this.laendercode = laendercode;
         this.name = name;
         this.co2Emission = co2Emission;
         this.jahr = jahr;
         this.vorhandenLand = false;
+        this.benutzer = benutzer;
         this.logDate = new Date();
     }
 
-    public LandUpdate(String laendercode, String name, double co2Emission, int jahr, Land land) {
-        this(laendercode, name, co2Emission, jahr);
+    public LandUpdate(String laendercode, String name, double co2Emission, int jahr, Land land, Benutzer benutzer) {
+        this(laendercode, name, co2Emission, jahr, benutzer);
         this.land = land;
         this.vorhandenLand = true;
     }
@@ -102,6 +106,14 @@ public class LandUpdate {
 
     public void setLand(Land land) {
         this.land = land;
+    }
+
+    public Benutzer getBenutzer() {
+        return benutzer;
+    }
+
+    public void setBenutzer(Benutzer benutzer) {
+        this.benutzer = benutzer;
     }
 
     public Date getLogDate() {

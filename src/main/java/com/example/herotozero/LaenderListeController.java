@@ -80,18 +80,17 @@ public class LaenderListeController implements Serializable {
         return "editCO2";
     }
 
-    public void saveSingleEdit(Land landAenderung) {
-        System.out.println("--- DEBUG: Das übergebene Land hat die ID: " + landAenderung.getID());
+    public void saveSingleEdit(Land landAenderung, Benutzer aktuellerUser) {
         EntityManager em = emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
         et.begin();
-        LandUpdate landVorschlag = new LandUpdate(landAenderung.getLaendercode(), landAenderung.getName(), landAenderung.getCo2Emission(), landAenderung.getJahr(), landAenderung);
+        LandUpdate landVorschlag = new LandUpdate(landAenderung.getLaendercode(), landAenderung.getName(), landAenderung.getCo2Emission(), landAenderung.getJahr(), landAenderung, aktuellerUser);
         em.persist(landVorschlag);
         et.commit();
         em.close();
     }
 
-    public void saveLand(Land neuesLand) throws Exception {
+    public void saveLand(Land neuesLand, Benutzer aktuellerUser) throws Exception {
         EntityManager em = emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
         try {
@@ -107,10 +106,10 @@ public class LaenderListeController implements Serializable {
             et.begin();
             LandUpdate landVorschlag;
             if (neuesLand.getID() == null) {
-                landVorschlag = new LandUpdate(neuesLand.getLaendercode(), neuesLand.getName(), neuesLand.getCo2Emission(), neuesLand.getJahr());
+                landVorschlag = new LandUpdate(neuesLand.getLaendercode(), neuesLand.getName(), neuesLand.getCo2Emission(), neuesLand.getJahr(), aktuellerUser);
                 //em.persist(neuesLand);
             } else {
-                landVorschlag = new LandUpdate(neuesLand.getLaendercode(), neuesLand.getName(), neuesLand.getCo2Emission(), neuesLand.getJahr(), neuesLand);
+                landVorschlag = new LandUpdate(neuesLand.getLaendercode(), neuesLand.getName(), neuesLand.getCo2Emission(), neuesLand.getJahr(), neuesLand, aktuellerUser);
                 //em.merge(neuesLand);
             }
             em.persist(landVorschlag);
