@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>Like Hro to Zero</title>
     <meta http-equiv="refresh" content="0; URL=http://localhost:8080/HeroToZero_war_exploded/showCO2.xhtml">
 </head>
 <body>
