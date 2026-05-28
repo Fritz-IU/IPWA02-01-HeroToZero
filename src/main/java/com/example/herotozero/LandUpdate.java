@@ -9,6 +9,7 @@ public class LandUpdate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ID;
+    @Column(name = "laendercode", nullable = false, length = 2, columnDefinition = "CHAR(2)")
     private String laendercode;
     private String name;
     private double co2Emission;
