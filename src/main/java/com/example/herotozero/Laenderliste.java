@@ -45,8 +45,10 @@ public class Laenderliste implements Serializable {
     public void listeAktualisieren() {
         Collator deCollator = Collator.getInstance(Locale.GERMAN);
         deCollator.setStrength(Collator.PRIMARY);
-        this.laenderListe = LaenderListeController.getInstance().getLaender().stream().sorted((land1, land2) -> deCollator.compare(land1.getName(), land2.getName())).collect(Collectors.toList());
-        this.gefilterteLaender = LaenderListeController.getInstance().getLaender();
+        Comparator<Land> landComparator = (land1, land2) -> deCollator.compare(land1.getName(), land2.getName());
+        landComparator = landComparator.thenComparingInt(Land::getJahr);
+        this.laenderListe = LaenderListeController.getInstance().getLaender().stream().sorted(landComparator).collect(Collectors.toList());
+        this.gefilterteLaender = new ArrayList<>(this.laenderListe);
     }
 
     public void handleSave(Benutzer aktuellerUser) {
