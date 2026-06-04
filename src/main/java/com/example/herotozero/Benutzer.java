@@ -1,5 +1,6 @@
 package com.example.herotozero;
 
+import jakarta.enterprise.inject.Default;
 import jakarta.persistence.*;
 
 @Entity
@@ -7,9 +8,12 @@ public class Benutzer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ID;
+    @Column(name = "name", unique = true, nullable = false)
     String name;
+    @Column(name = "passwort", nullable = false)
     String passwort;
     @Enumerated(EnumType.STRING)
+    @Column(name = "rolle", nullable = false, columnDefinition = "enum('ADMIN', 'WISSENSCHAFTLER', 'BENUTZER') DEFAULT 'BENUTZER'")
     private Rolle rolle = Rolle.BENUTZER;
 
     public Benutzer() {

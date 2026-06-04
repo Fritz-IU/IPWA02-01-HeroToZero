@@ -187,15 +187,24 @@ public class LaenderListeController implements Serializable {
     public boolean registrieren(Benutzer neuerBenutzer) {
         EntityManager em = emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
-        et.begin();
-        List<Benutzer> existiert = em.createQuery("SELECT b FROM Benutzer b WHERE b.name = :n", Benutzer.class).setParameter("n", neuerBenutzer.getName()).getResultList();
-        if (!existiert.isEmpty()) {
+        try {
+            List<Benutzer> existiert = em.createQuery("SELECT b FROM Benutzer b WHERE b.name = :n", Benutzer.class).setParameter("n", neuerBenutzer.getName()).getResultList();
+            if (!existiert.isEmpty()) {
+                return false;
+            } else {
+                et.begin();
+                em.persist(neuerBenutzer);
+                et.commit();
+                return true;
+            }
+        } catch (Exception e) {
+            if (et.isActive()) {
+                et.rollback();
+            }
+            System.err.println("Registrierung fehlgeschlagen! Name wird schon verwendet: " + e.getMessage());
             return false;
-        } else {
-            em.persist(neuerBenutzer);
-            et.commit();
+        } finally {
             em.close();
-            return true;
         }
     }
 }
