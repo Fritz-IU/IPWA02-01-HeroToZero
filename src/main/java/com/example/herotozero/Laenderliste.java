@@ -77,6 +77,7 @@ public class Laenderliste implements Serializable {
         LaenderListeController.getInstance().saveSingleEdit(land, aktuellerUser);
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Update eingereicht", "Änderungsvorschlag für " + land.getName() + " wurde gespeichert.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
+        land.setGeaendert(false);
     }
 
     public List<Land> getLaenderListe() {

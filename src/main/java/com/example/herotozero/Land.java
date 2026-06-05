@@ -17,6 +17,8 @@ public class Land {
     private String name;
     private double co2Emission;
     private int jahr;
+    @Transient
+    private boolean geaendert = false;
 
     public Land() {
     }
@@ -72,5 +74,13 @@ public class Land {
 
     public void setLaendercode(String laendercode) {
         this.laendercode = laendercode;
+    }
+
+    public boolean isGeaendert() {
+        return geaendert;
+    }
+
+    public void setGeaendert(boolean geaendert) {
+        this.geaendert = geaendert;
     }
 }

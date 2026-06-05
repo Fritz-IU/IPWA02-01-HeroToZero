@@ -26,12 +26,14 @@
                 <p:column headerText="Jährliche CO2-Emision">
                     <p:inputNumber value="#{land.co2Emission}" symbol=" t" symbolPosition="s" decimalPlaces="2"
                                    required="true">
+                        <p:ajax event="change" listener="#{land.setGeaendert(true)}" update="speichern" />
                     </p:inputNumber>
                 </p:column>
                 <p:column headerText="Änderungen Speichern">
-                    <p:commandButton value="Anderung speichern" icon="pi pi-save"
-                                     action="#{Laender.updateSingleLand(land, Login.benutzerAngemeldet)}" update="@this :messages"
-                                     process="@this @parent:@parent"/>
+                    <p:commandButton id="speichern" value="Anderung speichern" icon="pi pi-save"
+                                     action="#{Laender.updateSingleLand(land, Login.benutzerAngemeldet)}"
+                                     update="@this :messages" process="@this @parent:@parent"
+                                     disabled="#{not land.geaendert}" />
                 </p:column>
             </p:dataTable>
         </h:form>
