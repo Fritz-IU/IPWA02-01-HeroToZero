@@ -99,7 +99,8 @@ public class LaenderListeController implements Serializable {
         EntityManager em = emf.createEntityManager();
         EntityTransaction et = em.getTransaction();
         try {
-            List<Land> existiert = em.createQuery("SELECT l FROM Land l WHERE l.laendercode = :code AND l.jahr = :jahr", Land.class).setParameter("code", neuesLand.getLaendercode()).setParameter("jahr", neuesLand.getJahr()).getResultList();
+            List<Land> existiert = em.createQuery("SELECT l FROM Land l WHERE l.laendercode = :code AND l.jahr = :jahr", Land.class)
+                    .setParameter("code", neuesLand.getLaendercode()).setParameter("jahr", neuesLand.getJahr()).getResultList();
             if (!existiert.isEmpty()) {
                 if (neuesLand.getID() == null) {
                     throw new Exception("Für " + neuesLand.getName() + " existiert bereits ein Eintrag für das Jahr " + neuesLand.getJahr() + ". Bitte aktualisiere den vorhandene eintrag.");
@@ -112,10 +113,8 @@ public class LaenderListeController implements Serializable {
             LandUpdate landVorschlag;
             if (neuesLand.getID() == null) {
                 landVorschlag = new LandUpdate(neuesLand.getLaendercode(), neuesLand.getName(), neuesLand.getCo2Emission(), neuesLand.getJahr(), aktuellerUser);
-                //em.persist(neuesLand);
             } else {
                 landVorschlag = new LandUpdate(neuesLand.getLaendercode(), neuesLand.getName(), neuesLand.getCo2Emission(), neuesLand.getJahr(), neuesLand, aktuellerUser);
-                //em.merge(neuesLand);
             }
             em.persist(landVorschlag);
             et.commit();
