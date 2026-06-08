@@ -164,7 +164,8 @@ public class LaenderListeController implements Serializable {
     public List<LandUpdate> getUpdatesOffen() {
         EntityManager em = emf.createEntityManager();
         try {
-            return em.createQuery("SELECT u FROM LandUpdate u WHERE u.updateStatus = :s ORDER BY u.logDate ASC", LandUpdate.class).setParameter("s", UpdateStatus.OFFEN).getResultList();
+            return em.createQuery("SELECT u FROM LandUpdate u WHERE u.updateStatus = :s ORDER BY u.logDate ASC", LandUpdate.class)
+                    .setParameter("s", UpdateStatus.OFFEN).getResultList();
         } finally {
             em.close();
         }
