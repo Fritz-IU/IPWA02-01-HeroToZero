@@ -128,7 +128,7 @@ public class LaenderListeController implements Serializable {
         EntityTransaction et = em.getTransaction();
         et.begin();
 
-        if (update.isVorhandenLand()) {
+        if (update.getVorhandenLand()) {
             Land vorhanden = em.find(Land.class, update.getLand().getID());
             vorhanden.setName(update.getName());
             vorhanden.setLaendercode(update.getLaendercode());

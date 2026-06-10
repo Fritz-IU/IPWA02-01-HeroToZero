@@ -93,7 +93,7 @@ public class LandUpdate {
         this.updateStatus = updateStatus;
     }
 
-    public boolean isVorhandenLand() {
+    public boolean getVorhandenLand() {
         return vorhandenLand;
     }
 
