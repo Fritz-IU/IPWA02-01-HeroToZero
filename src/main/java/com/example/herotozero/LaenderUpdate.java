@@ -33,9 +33,11 @@ public class LaenderUpdate implements Serializable {
         try {
             LaenderListeController.getInstance().acceptUpdate(update);
             listeAktualisieren();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Erfolg", "Das Land " + update.getName() + " wurde aktualisiert."));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "Erfolg", "Das Land " + update.getName() + " wurde aktualisiert."));
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fehler", "Aktualisierung von " + update.getName() + " ist fehlgeschlagen: " + e.getMessage()));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Fehler", "Aktualisierung von " + update.getName() + " ist fehlgeschlagen: " + e.getMessage()));
         }
     }
 
@@ -43,9 +45,11 @@ public class LaenderUpdate implements Serializable {
         try {
             LaenderListeController.getInstance().rejectUpdate(update);
             listeAktualisieren();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Erfolg", "Die Aktualisierung von " + update.getName() + " wurde abgelehnt."));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "Erfolg", "Die Aktualisierung von " + update.getName() + " wurde abgelehnt."));
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fehler", "Ablehnen der Aktualisierung von " + update.getName() + " ist fehlgeschlagen: " + e.getMessage()));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Fehler", "Ablehnen der Aktualisierung von " + update.getName() + " ist fehlgeschlagen: " + e.getMessage()));
         }
     }
 
