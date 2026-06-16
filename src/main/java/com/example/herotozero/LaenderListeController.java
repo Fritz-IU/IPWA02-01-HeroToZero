@@ -70,16 +70,6 @@ public class LaenderListeController implements Serializable {
         return "registrieren";
     }
 
-    public String saveEdit() {
-        EntityManager em = emf.createEntityManager();
-        EntityTransaction et = em.getTransaction();
-        et.begin();
-        for (Land a : laenderliste.getLaenderListe())
-            em.merge(a);
-        et.commit();
-        return "editCO2";
-    }
-
     public void saveSingleEdit(Land landAenderung, Benutzer aktuellerUser) {
         EntityManager em = emf.createEntityManager();
         EntityTransaction et = em.getTransaction();

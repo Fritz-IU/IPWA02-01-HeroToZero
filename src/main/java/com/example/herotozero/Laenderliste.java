@@ -68,11 +68,6 @@ public class Laenderliste implements Serializable {
         }
     }
 
-    public String abbruch() {
-        this.neuesLand = null;
-        return "editCO2";
-    }
-
     public void updateSingleLand(Land land, Benutzer aktuellerUser) {
         LaenderListeController.getInstance().saveSingleEdit(land, aktuellerUser);
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
