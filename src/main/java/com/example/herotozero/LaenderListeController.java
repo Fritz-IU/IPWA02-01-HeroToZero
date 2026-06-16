@@ -85,11 +85,11 @@ public class LaenderListeController implements Serializable {
         EntityTransaction et = em.getTransaction();
         et.begin();
         LandUpdate landVorschlag = new LandUpdate(landAenderung.getLaendercode(),
-                                                    landAenderung.getName(),
-                                                    landAenderung.getCo2Emission(),
-                                                    landAenderung.getJahr(),
-                                                    landAenderung,
-                                                    aktuellerUser);
+                landAenderung.getName(),
+                landAenderung.getCo2Emission(),
+                landAenderung.getJahr(),
+                landAenderung,
+                aktuellerUser);
         em.persist(landVorschlag);
         et.commit();
         em.close();

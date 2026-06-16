@@ -8,25 +8,29 @@
         <div class="d-flex justify-content-center">
             <h:form id="loginForm">
                 <p:card style="width: 25em">
-                    <f:facet name="title"><i class="pi pi-user-plus" /> Registrieren</f:facet>
+                    <f:facet name="title"><i class="pi pi-user-plus"/> Registrieren</f:facet>
                     <p:panelGrid columns="1" layout="grid">
                         <p:row>
-                            <p:outputLabel value="Benutzername:" for="name" />
-                            <p:inputText id="name" value="#{Login.neuerBenutzer.name}" style="width: 100%" required="true" requiredMessage="Bitte Benutzernamen eingeben." />
+                            <p:outputLabel value="Benutzername:" for="name"/>
+                            <p:inputText id="name" value="#{Login.neuerBenutzer.name}" style="width: 100%"
+                                         required="true" requiredMessage="Bitte Benutzernamen eingeben."/>
                         </p:row>
                         <p:row>
-                            <p:outputLabel value="Passwort:" for="passwort" />
-                            <p:password id="passwort" value="#{Login.neuerBenutzer.passwort}" style="width: 100%" required="true" requiredMessage="Bitte Passwort eingeben." />
+                            <p:outputLabel value="Passwort:" for="passwort"/>
+                            <p:password id="passwort" value="#{Login.neuerBenutzer.passwort}" style="width: 100%"
+                                        required="true" requiredMessage="Bitte Passwort eingeben."/>
                         </p:row>
                         <p:row>
-                            <p:outputLabel value="Rolle:" for="rolle" />
-                            <p:selectOneMenu id="rolle" value="#{Login.neuerBenutzer.rolle}" style="width: 100%" required="true" requiredMessage="Bitte Rolle auswählen.">
-                                <f:selectItems value="#{Login.rolle}" var="r" itemLabel="#{r}" itemValue="#{r}" />
+                            <p:outputLabel value="Rolle:" for="rolle"/>
+                            <p:selectOneMenu id="rolle" value="#{Login.neuerBenutzer.rolle}" style="width: 100%"
+                                             required="true" requiredMessage="Bitte Rolle auswählen.">
+                                <f:selectItems value="#{Login.rolle}" var="r" itemLabel="#{r}" itemValue="#{r}"/>
                             </p:selectOneMenu>
                         </p:row>
                     </p:panelGrid>
                     <f:facet name="footer">
-                        <p:commandButton value="Registrieren" action="#{Login.registrieren()}" icon="pi pi-pencil" style="width: 100%" />
+                        <p:commandButton value="Registrieren" action="#{Login.registrieren()}" icon="pi pi-pencil"
+                                         style="width: 100%"/>
                     </f:facet>
                 </p:card>
             </h:form>

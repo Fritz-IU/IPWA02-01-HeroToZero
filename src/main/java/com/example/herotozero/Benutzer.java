@@ -1,6 +1,5 @@
 package com.example.herotozero;
 
-import jakarta.enterprise.inject.Default;
 import jakarta.persistence.*;
 
 @Entity
